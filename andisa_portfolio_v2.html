@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andisa Komani — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0b0c0f;
+    --bg2: #13151a;
+    --bg3: #1c1f27;
+    --accent: #00e5a0;
+    --accent2: #0099ff;
+    --text: #f0f0ee;
+    --muted: #7a7e8a;
+    --border: rgba(255,255,255,0.08);
+    --card-bg: #13151a;
+    --font-head: 'Syne', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+    --font-serif: 'Instrument Serif', serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font-mono); font-size: 14px; line-height: 1.6; }
+  a { color: inherit; text-decoration: none; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 3rem; height: 60px;
+    background: rgba(11,12,15,0.9);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: var(--font-head); font-size: 16px; font-weight: 800; }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2rem; align-items: center; }
+  .nav-links a { font-size: 12px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cv {
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 7px 16px; border: 1px solid var(--accent);
+    border-radius: 3px; color: var(--accent);
+    transition: all 0.2s; cursor: pointer;
+    font-family: var(--font-mono);
+  }
+  .nav-cv:hover { background: var(--accent); color: #0b0c0f; }
+
+  section { padding: 6rem 3rem; max-width: 1100px; margin: 0 auto; }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh; display: flex; flex-direction: column;
+    justify-content: center; padding-top: 100px; position: relative; overflow: hidden;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 2rem;
+  }
+  .hero-tag::before { content: ''; display: inline-block; width: 24px; height: 1px; background: var(--accent); }
+  h1.hero-name {
+    font-family: var(--font-head); font-size: clamp(52px, 8vw, 96px);
+    font-weight: 800; line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 1.5rem;
+  }
+  h1.hero-name .line2 { color: transparent; -webkit-text-stroke: 1px rgba(240,240,238,0.3); }
+  .hero-desc { font-size: 13px; color: var(--muted); max-width: 500px; line-height: 1.8; margin-bottom: 2.5rem; }
+  .hero-desc .highlight { color: var(--accent); }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 24px; font-family: var(--font-mono); font-size: 12px;
+    letter-spacing: 0.08em; border-radius: 4px; cursor: pointer; transition: all 0.2s; border: none;
+  }
+  .btn-primary { background: var(--accent); color: #0b0c0f; font-weight: 500; }
+  .btn-primary:hover { background: #00ffb3; transform: translateY(-1px); }
+  .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-cv {
+    background: transparent; color: var(--accent);
+    border: 1px solid var(--accent); font-weight: 500;
+  }
+  .btn-cv:hover { background: var(--accent); color: #0b0c0f; transform: translateY(-1px); }
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 4rem;
+    padding-top: 2rem; border-top: 1px solid var(--border);
+  }
+  .stat-num { font-family: var(--font-head); font-size: 32px; font-weight: 800; }
+  .stat-num span { color: var(--accent); }
+  .stat-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
+  .grid-overlay {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(0,229,160,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,229,160,0.04) 1px, transparent 1px);
+    background-size: 60px 60px; pointer-events: none;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 20%, transparent 100%);
+  }
+  .glow-orb {
+    position: absolute; width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,229,160,0.06) 0%, transparent 70%);
+    top: -200px; right: -100px; pointer-events: none;
+  }
+
+  /* SECTION HEADERS */
+  .section-label {
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-label::after { content: ''; flex: 1; max-width: 60px; height: 1px; background: var(--accent); }
+  h2.section-title { font-family: var(--font-head); font-size: clamp(32px, 4vw, 48px); font-weight: 700; line-height: 1.1; margin-bottom: 1.5rem; }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-top: 3rem; }
+  .about-text p { color: var(--muted); line-height: 1.9; font-size: 13px; margin-bottom: 1rem; }
+  .about-text p em { color: var(--text); font-style: normal; }
+  .skills-list { display: flex; flex-direction: column; gap: 1rem; }
+  .skill-row { display: flex; align-items: center; gap: 12px; }
+  .skill-name { font-size: 12px; color: var(--muted); min-width: 140px; letter-spacing: 0.05em; }
+  .skill-bar { flex: 1; height: 2px; background: var(--border); border-radius: 2px; overflow: hidden; }
+  .skill-fill { height: 100%; background: var(--accent); border-radius: 2px; }
+  .skill-pct { font-size: 11px; color: var(--muted); min-width: 30px; text-align: right; }
+
+  /* PROJECTS */
+  .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .project-card {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 8px; padding: 1.75rem; position: relative; overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .project-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
+  }
+  .project-card:hover { border-color: rgba(0,229,160,0.3); transform: translateY(-2px); }
+  .project-card:hover::before { transform: scaleX(1); }
+  .project-card.featured { grid-column: span 2; }
+  .featured-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
+  .project-num { font-size: 11px; color: rgba(0,229,160,0.4); letter-spacing: 0.1em; margin-bottom: 0.75rem; }
+  .project-title { font-family: var(--font-head); font-size: 18px; font-weight: 700; margin-bottom: 0.75rem; line-height: 1.2; }
+  .project-desc { font-size: 12px; color: var(--muted); line-height: 1.8; margin-bottom: 1.5rem; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.25rem; }
+  .tag { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 10px; border-radius: 2px; border: 1px solid var(--border); color: var(--muted); }
+  .tag.hw { border-color: rgba(0,229,160,0.3); color: var(--accent); }
+  .tag.sw { border-color: rgba(0,153,255,0.3); color: var(--accent2); }
+  .project-links { display: flex; gap: 1rem; }
+  .project-links a { font-size: 11px; letter-spacing: 0.08em; color: var(--muted); display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
+  .project-links a:hover { color: var(--accent); }
+  .project-img-placeholder {
+    aspect-ratio: 16/9; background: var(--bg3); border-radius: 4px;
+    border: 1px solid var(--border); display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 8px;
+    color: var(--muted); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .project-img-placeholder .big-icon { font-size: 36px; opacity: 0.3; }
+
+  /* EXPERIENCE */
+  .timeline { margin-top: 3rem; display: flex; flex-direction: column; }
+  .timeline-item { display: grid; grid-template-columns: 160px 1fr; gap: 2rem; padding-bottom: 2.5rem; position: relative; }
+  .timeline-item::after { content: ''; position: absolute; left: 159px; top: 8px; bottom: 0; width: 1px; background: var(--border); }
+  .timeline-item:last-child::after { display: none; }
+  .timeline-date { font-size: 11px; letter-spacing: 0.08em; color: var(--muted); text-align: right; padding-top: 2px; }
+  .timeline-dot { position: absolute; left: 153px; top: 6px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--accent); background: var(--bg); z-index: 1; }
+  .timeline-content h3 { font-family: var(--font-head); font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+  .timeline-content .org { font-size: 12px; color: var(--accent); margin-bottom: 0.75rem; }
+  .timeline-content p { font-size: 12px; color: var(--muted); line-height: 1.8; }
+
+  /* CV BANNER */
+  .cv-banner {
+    margin: 0 3rem 0; max-width: 1100px; margin-left: auto; margin-right: auto;
+    background: var(--bg2); border: 1px solid rgba(0,229,160,0.2);
+    border-radius: 8px; padding: 2rem 2.5rem;
+    display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .cv-banner-text h3 { font-family: var(--font-head); font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+  .cv-banner-text p { font-size: 12px; color: var(--muted); }
+
+  /* CONTACT */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 3rem; }
+  .contact-info h3 { font-family: var(--font-head); font-size: 28px; font-weight: 700; line-height: 1.2; margin-bottom: 1rem; }
+  .contact-info h3 span { font-family: var(--font-serif); font-style: italic; color: var(--accent); }
+  .contact-info p { font-size: 12px; color: var(--muted); line-height: 1.9; margin-bottom: 1.5rem; }
+  .contact-links { display: flex; flex-direction: column; gap: 0; }
+  .contact-link { display: flex; align-items: center; gap: 12px; font-size: 12px; color: var(--muted); padding: 12px 0; border-bottom: 1px solid var(--border); transition: color 0.2s; }
+  .contact-link:hover { color: var(--accent); }
+  .contact-link .lbl { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(0,229,160,0.5); min-width: 60px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 1rem; }
+  .form-group label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+  .form-group input, .form-group textarea {
+    background: var(--bg2); border: 1px solid var(--border); border-radius: 4px;
+    padding: 10px 14px; font-family: var(--font-mono); font-size: 13px; color: var(--text);
+    outline: none; transition: border-color 0.2s; resize: vertical;
+  }
+  .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); }
+  .form-group textarea { min-height: 100px; }
+
+  footer {
+    border-top: 1px solid var(--border); padding: 2rem 3rem;
+    display: flex; align-items: center; justify-content: space-between;
+    max-width: 1100px; margin: 0 auto; font-size: 11px; color: var(--muted); letter-spacing: 0.05em;
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 1.5rem; }
+    .nav-links a { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card.featured { grid-column: span 1; }
+    .featured-inner { grid-template-columns: 1fr; }
+    h1.hero-name { font-size: 48px; }
+    .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+    .timeline-item { grid-template-columns: 90px 1fr; gap: 1rem; }
+    .timeline-item::after { left: 89px; }
+    .timeline-dot { left: 83px; }
+    .cv-banner { flex-direction: column; align-items: flex-start; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">AK<span>.</span></div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+    <a href="cv.pdf" download class="nav-cv">↓ CV</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="grid-overlay"></div>
+  <div class="glow-orb"></div>
+  <div class="hero-tag">ECE Graduate — South Africa</div>
+  <h1 class="hero-name">Andisa<br><span class="line2">Komani</span></h1>
+  <p class="hero-desc">
+    Electrical &amp; Computer Engineering student at <span class="highlight">DUT</span>, building at the intersection of embedded systems, industrial automation, and full-stack software. Based in South Africa — open to <span class="highlight">international opportunities</span>.
+  </p>
+  <div class="hero-ctas">
+    <a href="#projects" class="btn btn-primary">View my work ↓</a>
+    <a href="#contact" class="btn btn-outline">Get in touch</a>
+    <a href="cv.pdf" download class="btn btn-cv">↓ Download CV</a>
+  </div>
+  <div class="hero-stats">
+    <div><div class="stat-num">5<span>+</span></div><div class="stat-label">Projects</div></div>
+    <div><div class="stat-num">4<span>th</span></div><div class="stat-label">Year ECE</div></div>
+    <div><div class="stat-num">2<span>+</span></div><div class="stat-label">Domains</div></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">About me</div>
+  <h2 class="section-title">Engineer. Builder.<br>Problem solver.</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm a final-year <em>Electrical &amp; Computer Engineering</em> student with hands-on experience across industrial automation, embedded systems, and full-stack web development. I enjoy working on problems that sit at the boundary of hardware and software.</p>
+      <p>My work spans <em>PLC control systems</em> for pharmaceutical environments, <em>autonomous robotics</em>, and <em>cloud-deployed web applications</em>. I have a strong interest in international engineering collaboration and cross-border projects.</p>
+      <p>Currently pursuing opportunities in <em>postgraduate research</em> and international engineering programmes — including the Ural Federal University Summer University 2026.</p>
+    </div>
+    <div class="skills-list">
+      <div class="skill-row"><span class="skill-name">PLC / IEC 61131-3</span><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div><span class="skill-pct">85%</span></div>
+      <div class="skill-row"><span class="skill-name">C / C++ / Embedded</span><div class="skill-bar"><div class="skill-fill" style="width:78%"></div></div><span class="skill-pct">78%</span></div>
+      <div class="skill-row"><span class="skill-name">Python / MATLAB</span><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div><span class="skill-pct">80%</span></div>
+      <div class="skill-row"><span class="skill-name">ASP.NET Core / C#</span><div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div><span class="skill-pct">75%</span></div>
+      <div class="skill-row"><span class="skill-name">Azure / Cloud Deploy</span><div class="skill-bar"><div class="skill-fill" style="width:65%"></div></div><span class="skill-pct">65%</span></div>
+      <div class="skill-row"><span class="skill-name">PCB / Circuit Design</span><div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div><span class="skill-pct">70%</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">Selected work</div>
+  <h2 class="section-title">Projects</h2>
+  <div class="projects-grid">
+
+    <div class="project-card featured">
+      <div class="featured-inner">
+        <div>
+          <div class="project-num">01 — Featured</div>
+          <div class="project-title">AK Mechanics — Vehicle Service Tracker</div>
+          <div class="project-desc">Full-stack web application for vehicle service and maintenance management. Built end-to-end with ASP.NET Core MVC, Entity Framework Core, SQL Server, and ASP.NET Identity for role-based auth. Deployed live to Microsoft Azure.</div>
+          <div class="project-tags">
+            <span class="tag sw">ASP.NET Core MVC</span>
+            <span class="tag sw">Entity Framework</span>
+            <span class="tag sw">SQL Server</span>
+            <span class="tag sw">Azure</span>
+            <span class="tag sw">Bootstrap 5</span>
+          </div>
+          <div class="project-links"><a href="#">GitHub ↗</a><a href="#">Live Demo ↗</a></div>
+        </div>
+        <div class="project-img-placeholder">
+          <div class="big-icon">🔧</div>
+          <span>Add screenshot here</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">02</div>
+      <div class="project-title">Pharmaceutical Clean Room PLC System</div>
+      <div class="project-desc">Full IEC 61131-3 Structured Text PLC control system for an Aspen Pharmacare clean room. Includes automated HVAC logic, pressure differential control, and fault handling.</div>
+      <div class="project-tags"><span class="tag hw">PLC</span><span class="tag hw">IEC 61131-3</span><span class="tag hw">SCADA</span><span class="tag sw">Structured Text</span></div>
+      <div class="project-links"><a href="#">Report ↗</a><a href="#">Simulation ↗</a></div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">03</div>
+      <div class="project-title">AI Autonomous RC Car</div>
+      <div class="project-desc">Autonomous ground vehicle using computer vision and embedded ML for real-time obstacle avoidance and lane following. Integrates custom sensor fusion with motor control on embedded hardware.</div>
+      <div class="project-tags"><span class="tag hw">Embedded Systems</span><span class="tag sw">Computer Vision</span><span class="tag sw">Python</span><span class="tag hw">Robotics</span></div>
+      <div class="project-links"><a href="#">GitHub ↗</a><a href="#">Video ↗</a></div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">04</div>
+      <div class="project-title">MATLAB Smart Vehicle Simulation</div>
+      <div class="project-desc">Model-based simulation of a smart vehicle control system in MATLAB/Simulink. Covers dynamics modelling, PID control design, and sensor emulation for highway driving scenarios.</div>
+      <div class="project-tags"><span class="tag sw">MATLAB</span><span class="tag sw">Simulink</span><span class="tag hw">Control Systems</span><span class="tag sw">PID</span></div>
+      <div class="project-links"><a href="#">GitHub ↗</a></div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">05</div>
+      <div class="project-title">Smart Airport Luggage Tracking System</div>
+      <div class="project-desc">Group capstone using King Shaka International Airport as case study. Responsible for the full Tracking, Communication and Passenger Interface section — covering RFID, real-time data pipelines, and passenger-facing UX.</div>
+      <div class="project-tags"><span class="tag hw">RFID</span><span class="tag sw">IoT</span><span class="tag sw">System Design</span><span class="tag hw">Networking</span></div>
+      <div class="project-links"><a href="#">Report ↗</a><a href="#">Presentation ↗</a></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Background</div>
+  <h2 class="section-title">Education &amp;<br>Experience</h2>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-date">2022 — Present</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <h3>BEng — Electrical &amp; Computer Engineering</h3>
+        <div class="org">Durban University of Technology (DUT)</div>
+        <p>Final-year student specialising in industrial automation, embedded systems, and software engineering. Capstone projects in PLC control, IoT tracking, and full-stack web development.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">2024</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <h3>Industrial Automation — Pharmaceutical</h3>
+        <div class="org">Aspen Pharmacare, Port Elizabeth</div>
+        <p>Designed PLC control logic for pharmaceutical clean room operations. Worked with IEC 61131-3 Structured Text, HVAC automation, and safety interlock systems aligned to GA1/GA2 engineering outcomes.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">July 2026</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <h3>International Engineering Programme</h3>
+        <div class="org">Ural Federal University — Summer University 2026</div>
+        <p>Selected participant at the Ministry of Science-supported Summer University at UrFU (July 6–19, 2026). Representing South Africa alongside 430 students from 15 countries.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CV BANNER -->
+<div class="cv-banner">
+  <div class="cv-banner-text">
+    <h3>Want the full picture?</h3>
+    <p>Download my CV for a complete overview of my education, projects, and skills.</p>
+  </div>
+  <a href="cv.pdf" download class="btn btn-cv" style="white-space:nowrap; padding: 14px 28px; font-size: 13px;">↓ Download CV</a>
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Get in touch</div>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h3>Let's build something <span>together</span></h3>
+      <p>Open to international opportunities, research collaborations, engineering exchange programmes, and interesting projects. Based in South Africa.</p>
+      <div class="contact-links">
+        <div class="contact-link"><span class="lbl">Email</span><span>your.email@example.com</span></div>
+        <div class="contact-link"><span class="lbl">LinkedIn</span><span>linkedin.com/in/andisa-komani</span></div>
+        <div class="contact-link"><span class="lbl">GitHub</span><span>github.com/andisa-komani</span></div>
+        <div class="contact-link" style="margin-top:1rem; border:none; padding-top:1rem;">
+          <a href="cv.pdf" download class="btn btn-cv" style="padding: 12px 20px; font-size: 12px;">↓ Download CV</a>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="form-group"><label>Name</label><input type="text" placeholder="Your name"></div>
+      <div class="form-group"><label>Email</label><input type="email" placeholder="your@email.com"></div>
+      <div class="form-group"><label>Message</label><textarea placeholder="Tell me about your project or opportunity..."></textarea></div>
+      <button class="btn btn-primary">Send message →</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Andisa Komani</span>
+  <span>ECE Student — South Africa</span>
+</footer>
+
+</body>
+</html>
