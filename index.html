@@ -22,8 +22,19 @@
     --font-mono: 'IBM Plex Mono', monospace;
     --font-serif: 'Instrument Serif', serif;
   }
+
+  [data-theme="light"] {
+    --bg: #f5f5f4;
+    --bg2: #ececeb;
+    --bg3: #dcdcda;
+    --text: #1a1a18;
+    --muted: #666660;
+    --border: rgba(0,0,0,0.1);
+    --card-bg: #ececeb;
+  }
+
   html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--text); font-family: var(--font-mono); font-size: 14px; line-height: 1.6; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font-mono); font-size: 14px; line-height: 1.6; transition: background 0.3s, color 0.3s; }
   a { color: inherit; text-decoration: none; }
 
   nav {
@@ -33,12 +44,26 @@
     background: rgba(11,12,15,0.9);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
+    transition: background 0.3s, border-color 0.3s;
   }
+
+  [data-theme="light"] nav {
+    background: rgba(245,245,244,0.95);
+  }
+
   .nav-logo { font-family: var(--font-head); font-size: 16px; font-weight: 800; }
   .nav-logo span { color: var(--accent); }
   .nav-links { display: flex; gap: 2rem; align-items: center; }
   .nav-links a { font-size: 12px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; }
   .nav-links a:hover { color: var(--accent); }
+  
+  .theme-toggle {
+    background: transparent; border: 1px solid var(--border); border-radius: 4px;
+    padding: 6px 12px; cursor: pointer; font-size: 14px; color: var(--muted);
+    transition: all 0.2s; font-family: var(--font-mono);
+  }
+  .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
   .nav-cv {
     font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
     padding: 7px 16px; border: 1px solid var(--accent);
@@ -119,7 +144,13 @@
   .skill-row { display: flex; align-items: center; gap: 12px; }
   .skill-name { font-size: 12px; color: var(--muted); min-width: 140px; letter-spacing: 0.05em; }
   .skill-bar { flex: 1; height: 2px; background: var(--border); border-radius: 2px; overflow: hidden; }
-  .skill-fill { height: 100%; background: var(--accent); border-radius: 2px; }
+  .skill-fill { height: 100%; background: var(--accent); border-radius: 2px; width: 0; animation: fillSkill 1.2s ease-out forwards; }
+  
+  @keyframes fillSkill {
+    from { width: 0; }
+    to { width: var(--skill-width); }
+  }
+
   .skill-pct { font-size: 11px; color: var(--muted); min-width: 30px; text-align: right; }
 
   /* PROJECTS */
@@ -230,6 +261,7 @@
     <a href="#projects">Projects</a>
     <a href="#experience">Experience</a>
     <a href="#contact">Contact</a>
+    <button id="theme-toggle" class="theme-toggle">🌙</button>
     <a href="cv.pdf" download class="nav-cv">↓ CV</a>
   </div>
 </nav>
@@ -241,7 +273,7 @@
   <div class="hero-tag">ECE UnderGraduate  University Of Zululand(SA)</div>
   <h1 class="hero-name">Andisa<br><span class="line2">Khumalo</span></h1>
   <p class="hero-desc">
-    Electrical &amp; Computer Engineering student at <span class="highlight">University of Zululand</span>, building at the intersection of embedded systems, industrial automation, and full-stack soft[...]
+    Electrical &amp; Computer Engineering student at <span class="highlight">University of Zululand</span>, building at the intersection of embedded systems, industrial automation, and full-stack web development. Passionate about solving real-world engineering challenges through code and design.
   </p>
   <div class="hero-ctas">
     <a href="#projects" class="btn btn-primary">View my work ↓</a>
@@ -261,17 +293,17 @@
   <h2 class="section-title">Engineer. Builder.<br>Problem solver.</h2>
   <div class="about-grid">
     <div class="about-text">
-      <p>I'm a final-year <em>Electrical &amp; Computer Engineering</em> student with hands-on experience across industrial automation, embedded systems, and full-stack web development. I enjoy workin[...]
-      <p>My work spans <em>PLC control systems</em> for pharmaceutical environments, <em>autonomous robotics</em>, and <em>cloud-deployed web applications</em>. I have a strong interest in internation[...]
+      <p>I'm a final-year <em>Electrical &amp; Computer Engineering</em> student with hands-on experience across industrial automation, embedded systems, and full-stack web development. I enjoy working at the intersection of hardware and software, designing systems that solve tangible problems.</p>
+      <p>My work spans <em>PLC control systems</em> for pharmaceutical environments, <em>autonomous robotics</em>, and <em>cloud-deployed web applications</em>. I have a strong interest in industrial IoT, real-time systems, and sustainable technology solutions.</p>
       <p>Currently pursuing opportunities in <em>Undergraduate research</em> and international engineering programmes including the Ural Federal University Summer University 2026.</p>
     </div>
     <div class="skills-list">
-      <div class="skill-row"><span class="skill-name">PLC / IEC 61131-3</span><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div><span class="skill-pct">85%</span></div>
-      <div class="skill-row"><span class="skill-name">C / C++ / Embedded</span><div class="skill-bar"><div class="skill-fill" style="width:78%"></div></div><span class="skill-pct">78%</span></div>
-      <div class="skill-row"><span class="skill-name">Python / MATLAB</span><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div><span class="skill-pct">80%</span></div>
-      <div class="skill-row"><span class="skill-name">ASP.NET Core / C#</span><div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div><span class="skill-pct">75%</span></div>
-      <div class="skill-row"><span class="skill-name">Azure / Cloud Deploy</span><div class="skill-bar"><div class="skill-fill" style="width:65%"></div></div><span class="skill-pct">65%</span></d[...]
-      <div class="skill-row"><span class="skill-name">PCB / Circuit Design</span><div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div><span class="skill-pct">70%</span></d[...]
+      <div class="skill-row"><span class="skill-name">PLC / IEC 61131-3</span><div class="skill-bar"><div class="skill-fill" style="--skill-width:85%"></div></div><span class="skill-pct">85%</span></div>
+      <div class="skill-row"><span class="skill-name">C / C++ / Embedded</span><div class="skill-bar"><div class="skill-fill" style="--skill-width:78%"></div></div><span class="skill-pct">78%</span></div>
+      <div class="skill-row"><span class="skill-name">Python / MATLAB</span><div class="skill-bar"><div class="skill-fill" style="--skill-width:80%"></div></div><span class="skill-pct">80%</span></div>
+      <div class="skill-row"><span class="skill-name">ASP.NET Core / C#</span><div class="skill-bar"><div class="skill-fill" style="--skill-width:75%"></div></div><span class="skill-pct">75%</span></div>
+      <div class="skill-row"><span class="skill-name">Azure / Cloud Deploy</span><div class="skill-bar"><div class="skill-fill" style="--skill-width:65%"></div></div><span class="skill-pct">65%</span></div>
+      <div class="skill-row"><span class="skill-name">PCB / Circuit Design</span><div class="skill-bar"><div class="skill-fill" style="--skill-width:70%"></div></div><span class="skill-pct">70%</span></div>
     </div>
   </div>
 </section>
@@ -287,7 +319,7 @@
         <div>
           <div class="project-num">01 — Featured</div>
           <div class="project-title">AK Mechanics — Vehicle Service Tracker</div>
-          <div class="project-desc">Full-stack web application for vehicle service and maintenance management. Built end-to-end with ASP.NET Core MVC, Entity Framework Core, SQL Server, and ASP.N[...]
+          <div class="project-desc">Full-stack web application for vehicle service and maintenance management. Built end-to-end with ASP.NET Core MVC, Entity Framework Core, SQL Server, and deployed on Azure. Features include client management, service history tracking, billing, and automated notifications.</div>
           <div class="project-tags">
             <span class="tag sw">ASP.NET Core MVC</span>
             <span class="tag sw">Entity Framework</span>
@@ -296,12 +328,12 @@
             <span class="tag sw">Bootstrap 5</span>
           </div>
          <div class="project-links">
-  <a href="https://github.com/AndisaKhumalo/AKMechanics">GitHub ↗</a>
-  <a href="https://akmechanics-bufrgaawdpe7cta3.canadacentral-01.azurewebsites.net/Client" target="_blank">Live Demo ↗</a>
+  <a href="https://github.com/AndisaKhumalo/AKMechanics" rel="noopener noreferrer">GitHub ↗</a>
+  <a href="https://akmechanics-bufrgaawdpe7cta3.canadacentral-01.azurewebsites.net/Client" target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
 </div>
         <div class="project-img-placeholder" style="padding:0; overflow:hidden;">
-  <img src="AK-Mechanics.png"
-       style="width:100%; height:100%; object-fit:cover; border-radius:4px;">
+  <img src="AK-Mechanics.png" alt="AK Mechanics Vehicle Service Tracker application interface"
+       style="width:100%; height:100%; object-fit:cover; border-radius:4px;" loading="lazy">
        </div>
       </div>
     </div>
@@ -309,30 +341,30 @@
     <div class="project-card">
       <div class="project-num">02</div>
       <div class="project-title">Pharmaceutical Clean Room PLC System</div>
-      <div class="project-desc">Full IEC 61131-3 Structured Text PLC control system for an Aspen Pharmacare clean room. Includes automated HVAC logic, pressure differential control, and fault han[...]
+      <div class="project-desc">Full IEC 61131-3 Structured Text PLC control system for an Aspen Pharmacare pharmaceutical clean room facility. Includes automated HVAC logic with multi-zone pressure differential control, temperature monitoring, and comprehensive fault handling with operator alerts.</div>
       <div class="project-tags"><span class="tag hw">PLC</span><span class="tag hw">IEC 61131-3</span><span class="tag hw">SCADA</span><span class="tag sw">Structured Text</span></div>
     </div>
     <div class="project-card">
       <div class="project-num">03</div>
-      <div class="project-title">AI Autonomous car</div>
-      <div class="project-desc">Autonomous ground vehicle using computer vision and embedded ML for real-time obstacle avoidance and lane following. Integrates custom sensor fusion with motor con[...]
+      <div class="project-title">AI Autonomous Vehicle</div>
+      <div class="project-desc">Autonomous ground vehicle using computer vision and embedded machine learning for real-time obstacle avoidance and lane following. Integrates custom sensor fusion with motor control using Raspberry Pi and Arduino platforms for autonomous navigation.</div>
       <div class="project-tags"><span class="tag hw">Embedded Systems</span><span class="tag sw">Computer Vision</span><span class="tag sw">Python</span><span class="tag hw">Robotics</span></div>
      </div>
 
     <div class="project-card">
       <div class="project-num">04</div>
       <div class="project-title">MATLAB Smart Vehicle Simulation</div>
-      <div class="project-desc">Model-based simulation of a smart vehicle control system in MATLAB/Simulink. Covers dynamics modelling, PID control design, and sensor emulation for highway drivin[...]
+      <div class="project-desc">Model-based simulation of an intelligent vehicle control system in MATLAB/Simulink. Covers vehicle dynamics modelling, PID control design, sensor emulation, and testing for highway driving scenarios with adaptive cruise control.</div>
       <div class="project-tags"><span class="tag sw">MATLAB</span><span class="tag sw">Simulink</span><span class="tag hw">Control Systems</span><span class="tag sw">PID</span></div>
       </div>
     <div class="project-card">
       <div class="project-num">05</div>
       <div class="project-title">Smart Airport Luggage Tracking System</div>
-      <div class="project-desc">Involded in a group designing a baggage handling sysytem for King Shaka International Airport . Responsible for the full Tracking, Communication and Passenger Inte[...]
+      <div class="project-desc">Involved in a group project designing an intelligent baggage handling system for King Shaka International Airport. Responsible for the complete system architecture covering tracking, communication protocols, and passenger interface. Utilized RFID technology for real-time baggage location, IoT sensors for automated sorting, and a web portal for tracking and customer notifications.</div>
       <div class="project-tags"><span class="tag hw">RFID</span><span class="tag sw">IoT</span><span class="tag sw">System Design</span><span class="tag hw">Networking</span></div>
       <div class="project-links">
-  <a href="airport-tracking-report.pdf" target="_blank">Report ↗</a>
-  <a href="airport-tracking-presentation.pdf" target="_blank">Presentation ↗</a>
+  <a href="airport-tracking-report.pdf" target="_blank" rel="noopener noreferrer">Report ↗</a>
+  <a href="airport-tracking-presentation.pdf" target="_blank" rel="noopener noreferrer">Presentation ↗</a>
 </div>
 
   </div>
@@ -349,34 +381,34 @@
       <div class="timeline-content">
         <h3>BEng (Electrical &amp; Computer Engineering)</h3>
         <div class="org">University of Zululand(UZ)</div>
-        <p>Final-year student specialising in industrial automation, embedded systems, and software engineering. Capstone projects in PLC control, IoT tracking, and full-stack web development.</p[...]
+        <p>Final-year student specialising in industrial automation, embedded systems, and software engineering. Capstone projects include PLC control systems for pharmaceutical clean rooms, IoT baggage tracking, and full-stack web applications for vehicle maintenance management.</p>
       </div>
     </div>
     <div class="timeline-item">
       <div class="timeline-date">2026 March</div>
       <div class="timeline-dot"></div>
       <div class="timeline-content">
-        <h3>Industrial Automation = Pharmaceutical</h3>
+        <h3>Industrial Automation Internship — Pharmaceutical</h3>
         <div class="org">Aspen Pharmacare, Port Elizabeth</div>
-        <p>Designed PLC control logic for pharmaceutical clean room operations. Worked with IEC 61131-3 Structured Text, HVAC automation, and safety interlock systems aligned to GA1/GA2 engineeri[...]
+        <p>Designed PLC control logic for pharmaceutical clean room operations. Worked extensively with IEC 61131-3 Structured Text, HVAC automation systems, and safety interlock systems aligned to GA1/GA2 engineering standards. Collaborated with production teams to validate system performance.</p>
       </div>
     </div>
     <div class="timeline-item">
       <div class="timeline-date">April 2026</div>
       <div class="timeline-dot"></div>
       <div class="timeline-content">
-        <h3>AK Mechanics Full web development</h3>
-        <div class="org">Application of ASP.NET using MVC</div>
-        <p>Full-stack web application for vehicle service and maintenance management</p>
+        <h3>Full Stack Web Development</h3>
+        <div class="org">AK Mechanics Application</div>
+        <p>Developed a complete ASP.NET Core MVC web application for vehicle service and maintenance management. Implemented Entity Framework Core for data persistence, SQL Server database design, and deployed on Azure cloud platform with responsive Bootstrap 5 frontend.</p>
       </div>
     </div>
     <div class="timeline-item">
       <div class="timeline-date">Present</div>
       <div class="timeline-dot"></div>
       <div class="timeline-content">
-        <h3>AI Autonomous Vehicle</h3>
-        <div class="org">University of Zululand final year project</div>
-        <p>Designing and implemanting an Electrical Autonomous vehicle, using Raspberry Pi and Arduino to implement OpenCV for lane keeping paired with a gps based android application to give the[...]
+        <h3>AI Autonomous Vehicle Project</h3>
+        <div class="org">University of Zululand Final Year Capstone</div>
+        <p>Designing and implementing an autonomous electric vehicle for the final year capstone project. Utilizing Raspberry Pi and Arduino microcontrollers with OpenCV for computer vision-based lane keeping. Paired with a GPS-enabled Android application providing real-time vehicle tracking and remote control capabilities.</p>
       </div>
     </div>
   </div>
@@ -399,9 +431,9 @@
       <h3>Let's build something <span>together</span></h3>
       <p>Open to international opportunities, research collaborations, engineering exchange programmes, and interesting projects. Based in South Africa.</p>
       <div class="contact-links">
-        <div class="contact-link"><span class="lbl">Email</span><span>andisakhumalo.94@gmail.com</span></div>
-        <div class="contact-link"><span class="lbl">LinkedIn</span><span>www.linkedin.com/in/andisa-khumalo-186761235</span></div>
-        <div class="contact-link"><span class="lbl">GitHub</span><span>https://github.com/AndisaKhumalo?tab=repositories</span></div>
+        <div class="contact-link"><span class="lbl">Email</span><span><a href="mailto:andisakhumalo.94@gmail.com" style="color: var(--text);">andisakhumalo.94@gmail.com</a></span></div>
+        <div class="contact-link"><span class="lbl">LinkedIn</span><span><a href="https://www.linkedin.com/in/andisa-khumalo-186761235" target="_blank" rel="noopener noreferrer" style="color: var(--text);">andisa-khumalo-186761235</a></span></div>
+        <div class="contact-link"><span class="lbl">GitHub</span><span><a href="https://github.com/AndisaKhumalo?tab=repositories" target="_blank" rel="noopener noreferrer" style="color: var(--text);">github.com/AndisaKhumalo</a></span></div>
         <div class="contact-link" style="margin-top:1rem; border:none; padding-top:1rem;">
           <a href="cv.pdf" download class="btn btn-cv" style="padding: 12px 20px; font-size: 12px;">↓ Download CV</a>
         </div>
@@ -422,6 +454,56 @@
   <span>© 2026 Andisa Khumalo</span>
   <span>ECE Student  South Africa</span>
 </footer>
+
+<script>
+  // Dark/Light mode toggle
+  const themeToggle = document.getElementById('theme-toggle');
+  const htmlElement = document.documentElement;
+  
+  // Check for saved theme preference or default to dark
+  const currentTheme = localStorage.getItem('theme') || 'dark';
+  htmlElement.setAttribute('data-theme', currentTheme);
+  updateThemeButton(currentTheme);
+  
+  themeToggle.addEventListener('click', () => {
+    const theme = htmlElement.getAttribute('data-theme');
+    const newTheme = theme === 'dark' ? 'light' : 'dark';
+    
+    htmlElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateThemeButton(newTheme);
+  });
+  
+  function updateThemeButton(theme) {
+    themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+  }
+
+  // Animate skill bars on scroll
+  const observerOptions = {
+    threshold: 0.5,
+    rootMargin: '0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const skillFills = entry.target.querySelectorAll('.skill-fill');
+        skillFills.forEach(fill => {
+          fill.style.animation = 'none';
+          setTimeout(() => {
+            fill.style.animation = 'fillSkill 1.2s ease-out forwards';
+          }, 10);
+        });
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  const skillsList = document.querySelector('.skills-list');
+  if (skillsList) {
+    observer.observe(skillsList);
+  }
+</script>
 
 </body>
 </html>
