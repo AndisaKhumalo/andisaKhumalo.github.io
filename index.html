@@ -3,8 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Andisa Khumalo — ECE Student. Full-stack engineer building embedded systems, PLCs, industrial automation, and cloud applications. Final-year BEng student at University of Zululand.">
+<meta name="keywords" content="Electrical Engineering, Computer Engineering, PLC, Embedded Systems, Full-Stack, IoT, South Africa">
+<meta property="og:title" content="Andisa Khumalo — Portfolio">
+<meta property="og:description" content="Electrical & Computer Engineering student building at the intersection of embedded systems, industrial automation, and full-stack web development.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://andisaKhumalo.github.io">
+<meta property="og:image" content="https://andisaKhumalo.github.io/AK-Mechanics.png">
+<meta name="theme-color" content="#0b0c0f">
+<link rel="canonical" href="https://andisaKhumalo.github.io">
 <title>Andisa Khumalo — Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" as="style">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -28,7 +39,7 @@
     --bg2: #ececeb;
     --bg3: #dcdcda;
     --text: #1a1a18;
-    --muted: #666660;
+    --muted: #555550;
     --border: rgba(0,0,0,0.1);
     --card-bg: #ececeb;
   }
@@ -158,7 +169,6 @@
   .project-card {
    border-radius: 8px; padding: 1.75rem; position: relative; overflow: hidden; display: flex; flex-direction: column;
     background: var(--card-bg); border: 1px solid var(--border);
-    
     transition: border-color 0.2s, transform 0.2s;
   }
   .project-card::before {
@@ -186,6 +196,7 @@
     color: var(--muted); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
   }
   .project-img-placeholder .big-icon { font-size: 36px; opacity: 0.3; }
+  .project-img-placeholder img { width: 100%; height: 100%; object-fit: cover; border-radius: 4px; }
 
   /* EXPERIENCE */
   .timeline { margin-top: 3rem; display: flex; flex-direction: column; }
@@ -234,9 +245,14 @@
     max-width: 1100px; margin: 0 auto; font-size: 11px; color: var(--muted); letter-spacing: 0.05em;
   }
 
+  /* MOBILE MENU */
+  .mobile-menu-toggle { display: none; }
   @media (max-width: 768px) {
     nav { padding: 0 1.5rem; }
-    .nav-links a { display: none; }
+    .nav-links { position: absolute; top: 60px; left: 0; right: 0; flex-direction: column; background: var(--bg); border-bottom: 1px solid var(--border); padding: 1rem 0; gap: 0; display: none; }
+    .nav-links.active { display: flex; }
+    .nav-links a { padding: 0.75rem 1.5rem; width: 100%; }
+    .mobile-menu-toggle { display: flex; align-items: center; justify-content: center; background: transparent; border: 1px solid var(--border); border-radius: 4px; padding: 6px 12px; cursor: pointer; font-size: 16px; }
     section { padding: 4rem 1.5rem; }
     .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
     .projects-grid { grid-template-columns: 1fr; }
@@ -256,12 +272,13 @@
 
 <nav>
   <div class="nav-logo">AK<span>.</span></div>
-  <div class="nav-links">
+  <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation menu">☰</button>
+  <div class="nav-links" id="nav-links">
     <a href="#about">About</a>
     <a href="#projects">Projects</a>
     <a href="#experience">Experience</a>
     <a href="#contact">Contact</a>
-    <button id="theme-toggle" class="theme-toggle">🌙</button>
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
     <a href="cv.pdf" download class="nav-cv">↓ CV</a>
   </div>
 </nav>
@@ -270,10 +287,10 @@
 <section id="hero">
   <div class="grid-overlay"></div>
   <div class="glow-orb"></div>
-  <div class="hero-tag">ECE UnderGraduate  University Of Zululand(SA)</div>
+  <div class="hero-tag">ECE Undergraduate — University of Zululand (SA)</div>
   <h1 class="hero-name">Andisa<br><span class="line2">Khumalo</span></h1>
   <p class="hero-desc">
-    Electrical &amp; Computer Engineering student at <span class="highlight">University of Zululand</span>, building at the intersection of embedded systems, industrial automation, and full-stack web [...]
+    Electrical &amp; Computer Engineering student at <span class="highlight">University of Zululand</span>, building at the intersection of embedded systems, industrial automation, and full-stack web development.
   </p>
   <div class="hero-ctas">
     <a href="#projects" class="btn btn-primary">View my work ↓</a>
@@ -293,17 +310,17 @@
   <h2 class="section-title">Engineer. Builder.<br>Problem solver.</h2>
   <div class="about-grid">
     <div class="about-text">
-      <p>I'm a final-year <em>Electrical &amp; Computer Engineering</em> student with hands-on experience across industrial automation, embedded systems, and full-stack web development. I enjoy workin[...]
-      <p>My work spans <em>PLC control systems</em> for pharmaceutical environments, <em>autonomous robotics</em>, and <em>cloud-deployed web applications</em>. I have a strong interest in industrial [...]
-      <p>Currently pursuing opportunities in <em>Undergraduate research</em> and international engineering programmes including the Ural Federal University Summer University 2026.</p>
+      <p>I'm a final-year <em>Electrical &amp; Computer Engineering</em> student with hands-on experience across industrial automation, embedded systems, and full-stack web development. I enjoy working on real-world engineering challenges that bridge hardware and software.</p>
+      <p>My work spans <em>PLC control systems</em> for pharmaceutical environments, <em>autonomous robotics</em>, and <em>cloud-deployed web applications</em>. I have a strong interest in industrial IoT, control systems design, and scalable software architectures.</p>
+      <p>Currently pursuing opportunities in <em>undergraduate research</em> and international engineering programmes including the Ural Federal University Summer University 2026.</p>
     </div>
     <div class="skills-list">
-      <div class="skill-row"><span class="skill-name">PLC / IEC 61131-3</span><div class="skill-bar"><div class="skill-fill" style="--skill-width:85%"></div></div><span class="skill-pct">85%</span></d[...]
-      <div class="skill-row"><span class="skill-name">C / C++ / Embedded</span><div class="skill-bar"><div class="skill-fill" style="--skill-width:78%"></div></div><span class="skill-pct">78%</span></[...]
-      <div class="skill-row"><span class="skill-name">Python / MATLAB</span><div class="skill-bar"><div class="skill-fill" style="--skill-width:80%"></div></div><span class="skill-pct">80%</span></div[...]
-      <div class="skill-row"><span class="skill-name">ASP.NET Core / C#</span><div class="skill-bar"><div class="skill-fill" style="--skill-width:75%"></div></div><span class="skill-pct">75%</span></d[...]
-      <div class="skill-row"><span class="skill-name">Azure / Cloud Deploy</span><div class="skill-bar"><div class="skill-fill" style="--skill-width:65%"></div></div><span class="skill-pct">65%</span>[...]
-      <div class="skill-row"><span class="skill-name">PCB / Circuit Design</span><div class="skill-bar"><div class="skill-fill" style="--skill-width:70%"></div></div><span class="skill-pct">70%</span>[...]
+      <div class="skill-row"><span class="skill-name">PLC / IEC 61131-3</span><div class="skill-bar"><div class="skill-fill" style="--skill-width:85%"></div></div><span class="skill-pct">85%</span></div>
+      <div class="skill-row"><span class="skill-name">C / C++ / Embedded</span><div class="skill-bar"><div class="skill-fill" style="--skill-width:78%"></div></div><span class="skill-pct">78%</span></div>
+      <div class="skill-row"><span class="skill-name">Python / MATLAB</span><div class="skill-bar"><div class="skill-fill" style="--skill-width:80%"></div></div><span class="skill-pct">80%</span></div>
+      <div class="skill-row"><span class="skill-name">ASP.NET Core / C#</span><div class="skill-bar"><div class="skill-fill" style="--skill-width:75%"></div></div><span class="skill-pct">75%</span></div>
+      <div class="skill-row"><span class="skill-name">Azure / Cloud Deploy</span><div class="skill-bar"><div class="skill-fill" style="--skill-width:65%"></div></div><span class="skill-pct">65%</span></div>
+      <div class="skill-row"><span class="skill-name">PCB / Circuit Design</span><div class="skill-bar"><div class="skill-fill" style="--skill-width:70%"></div></div><span class="skill-pct">70%</span></div>
     </div>
   </div>
 </section>
@@ -319,7 +336,7 @@
         <div>
           <div class="project-num">01 — Featured</div>
           <div class="project-title">AK Mechanics — Vehicle Service Tracker</div>
-          <div class="project-desc">Full-stack web application for vehicle service and maintenance management. Built end-to-end with ASP.NET Core MVC, Entity Framework Core, SQL Server, and deployed o[...]
+          <div class="project-desc">Full-stack web application for vehicle service and maintenance management. Built end-to-end with ASP.NET Core MVC, Entity Framework Core, SQL Server, and deployed to Azure cloud infrastructure with responsive Bootstrap 5 UI.</div>
           <div class="project-tags">
             <span class="tag sw">ASP.NET Core MVC</span>
             <span class="tag sw">Entity Framework</span>
@@ -328,13 +345,13 @@
             <span class="tag sw">Bootstrap 5</span>
           </div>
          <div class="project-links">
-  <a href="https://github.com/AndisaKhumalo/AKMechanics" rel="noopener noreferrer">GitHub ↗</a>
+  <a href="https://github.com/AndisaKhumalo/AKMechanics" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
   <a href="https://akmechanics-bufrgaawdpe7cta3.canadacentral-01.azurewebsites.net/Client" target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
 </div>
+        </div>
         <div class="project-img-placeholder" style="padding:0; overflow:hidden;">
-  <img src="AK-Mechanics.png" alt="AK Mechanics Vehicle Service Tracker application interface"
-       style="width:100%; height:100%; object-fit:cover; border-radius:4px;" loading="lazy">
-       </div>
+  <img src="AK-Mechanics.png" alt="AK Mechanics Vehicle Service Tracker application interface showing vehicle maintenance dashboard"
+       width="800" height="450" style="width:100%; height:100%; object-fit:cover; border-radius:4px;" loading="lazy">
         </div>
       </div>
     </div>
@@ -342,32 +359,32 @@
     <div class="project-card">
       <div class="project-num">02</div>
       <div class="project-title">Pharmaceutical Clean Room PLC System</div>
-      <div class="project-desc">Full IEC 61131-3 Structured Text PLC control system for an Aspen Pharmacare pharmaceutical clean room facility. Includes automated HVAC logic with multi-zone pressure d[...]
+      <div class="project-desc">Full IEC 61131-3 Structured Text PLC control system for an Aspen Pharmacare pharmaceutical clean room facility. Includes automated HVAC logic with multi-zone pressure control, alarm management, and SCADA integration for regulatory compliance.</div>
       <div class="project-tags"><span class="tag hw">PLC</span><span class="tag hw">IEC 61131-3</span><span class="tag hw">SCADA</span><span class="tag sw">Structured Text</span></div>
     </div>
     <div class="project-card">
       <div class="project-num">03</div>
       <div class="project-title">AI Autonomous Vehicle</div>
-      <div class="project-desc">Autonomous ground vehicle using computer vision and embedded machine learning for real-time obstacle avoidance and lane following. Integrates custom sensor fusion with [...]
+      <div class="project-desc">Autonomous ground vehicle using computer vision and embedded machine learning for real-time obstacle avoidance and lane following. Integrates custom sensor fusion algorithms, Raspberry Pi processing, and TensorFlow-based decision making.</div>
       <div class="project-tags"><span class="tag hw">Embedded Systems</span><span class="tag sw">Computer Vision</span><span class="tag sw">Python</span><span class="tag hw">Robotics</span></div>
      </div>
 
     <div class="project-card">
       <div class="project-num">04</div>
       <div class="project-title">MATLAB Smart Vehicle Simulation</div>
-      <div class="project-desc">Model-based simulation of an intelligent vehicle control system in MATLAB/Simulink. Covers vehicle dynamics modelling, PID control design, sensor emulation, and testing[...]
+      <div class="project-desc">Model-based simulation of an intelligent vehicle control system in MATLAB/Simulink. Covers vehicle dynamics modelling, PID control design, sensor emulation, and testing of autonomous decision logic with comprehensive performance analysis.</div>
       <div class="project-tags"><span class="tag sw">MATLAB</span><span class="tag sw">Simulink</span><span class="tag hw">Control Systems</span><span class="tag sw">PID</span></div>
       </div>
     <div class="project-card">
       <div class="project-num">05</div>
       <div class="project-title">Smart Airport Luggage Tracking System</div>
-      <div class="project-desc">Involved in a group project designing an intelligent baggage handling system for King Shaka International Airport. Responsible for the complete system architecture cove[...]
+      <div class="project-desc">Group project designing an intelligent baggage handling system for King Shaka International Airport. Responsible for complete system architecture, RFID integration, IoT sensor networks, and real-time tracking database design.</div>
       <div class="project-tags"><span class="tag hw">RFID</span><span class="tag sw">IoT</span><span class="tag sw">System Design</span><span class="tag hw">Networking</span></div>
       <div class="project-links">
   <a href="airport-tracking-report.pdf" target="_blank" rel="noopener noreferrer">Report ↗</a>
   <a href="airport-tracking-presentation.pdf" target="_blank" rel="noopener noreferrer">Presentation ↗</a>
 </div>
-
+    </div>
   </div>
 </section>
 
@@ -381,17 +398,17 @@
       <div class="timeline-dot"></div>
       <div class="timeline-content">
         <h3>BEng (Electrical &amp; Computer Engineering)</h3>
-        <div class="org">University of Zululand(UZ)</div>
-        <p>Final-year student specialising in industrial automation, embedded systems, and software engineering. Capstone projects include PLC control systems for pharmaceutical clean rooms, IoT bagga[...]
+        <div class="org">University of Zululand (UZ)</div>
+        <p>Final-year student specialising in industrial automation, embedded systems, and software engineering. Capstone projects include PLC control systems for pharmaceutical clean rooms, IoT applications, and autonomous vehicle design with strong academic performance.</p>
       </div>
     </div>
     <div class="timeline-item">
-      <div class="timeline-date">2026 March</div>
+      <div class="timeline-date">March 2026</div>
       <div class="timeline-dot"></div>
       <div class="timeline-content">
         <h3>Industrial Automation Internship — Pharmaceutical</h3>
         <div class="org">Aspen Pharmacare, Port Elizabeth</div>
-        <p>Designed PLC control logic for pharmaceutical clean room operations. Worked extensively with IEC 61131-3 Structured Text, HVAC automation systems, and safety interlock systems aligned to GA[...]
+        <p>Designed PLC control logic for pharmaceutical clean room operations. Worked extensively with IEC 61131-3 Structured Text, HVAC automation systems, and safety interlock systems aligned with pharmaceutical industry standards and regulatory requirements.</p>
       </div>
     </div>
     <div class="timeline-item">
@@ -400,7 +417,7 @@
       <div class="timeline-content">
         <h3>Full Stack Web Development</h3>
         <div class="org">AK Mechanics Application</div>
-        <p>Developed a complete ASP.NET Core MVC web application for vehicle service and maintenance management. Implemented Entity Framework Core for data persistence, SQL Server database design, and[...]
+        <p>Developed a complete ASP.NET Core MVC web application for vehicle service and maintenance management. Implemented Entity Framework Core for data persistence, SQL Server database design, Azure cloud deployment, and responsive front-end interface design.</p>
       </div>
     </div>
     <div class="timeline-item">
@@ -409,7 +426,7 @@
       <div class="timeline-content">
         <h3>AI Autonomous Vehicle Project</h3>
         <div class="org">University of Zululand Final Year Capstone</div>
-        <p>Designing and implementing an autonomous electric vehicle for the final year capstone project. Utilizing Raspberry Pi and Arduino microcontrollers with OpenCV for computer vision-based lane[...]
+        <p>Designing and implementing an autonomous electric vehicle for the final year capstone project. Utilizing Raspberry Pi and Arduino microcontrollers with OpenCV for computer vision-based navigation, sensor integration, and embedded machine learning implementation.</p>
       </div>
     </div>
   </div>
@@ -433,18 +450,27 @@
       <p>Open to international opportunities, research collaborations, engineering exchange programmes, and interesting projects. Based in South Africa.</p>
       <div class="contact-links">
         <div class="contact-link"><span class="lbl">Email</span><span><a href="mailto:andisakhumalo.94@gmail.com" style="color: var(--text);">andisakhumalo.94@gmail.com</a></span></div>
-        <div class="contact-link"><span class="lbl">LinkedIn</span><span><a href="https://www.linkedin.com/in/andisa-khumalo-186761235" target="_blank" rel="noopener noreferrer" style="color: var(--te[...]
-        <div class="contact-link"><span class="lbl">GitHub</span><span><a href="https://github.com/AndisaKhumalo?tab=repositories" target="_blank" rel="noopener noreferrer" style="color: var(--text);"[...]
+        <div class="contact-link"><span class="lbl">LinkedIn</span><span><a href="https://www.linkedin.com/in/andisa-khumalo-186761235" target="_blank" rel="noopener noreferrer" style="color: var(--text);">Andisa Khumalo</a></span></div>
+        <div class="contact-link"><span class="lbl">GitHub</span><span><a href="https://github.com/AndisaKhumalo?tab=repositories" target="_blank" rel="noopener noreferrer" style="color: var(--text);">AndisaKhumalo</a></span></div>
         <div class="contact-link" style="margin-top:1rem; border:none; padding-top:1rem;">
           <a href="cv.pdf" download class="btn btn-cv" style="padding: 12px 20px; font-size: 12px;">↓ Download CV</a>
         </div>
       </div>
     </div>
     <div>
-      <form action="https://formspree.io/f/mkoyqzjg" method="POST">
-        <div class="form-group"><label>Name</label><input type="text" name="name" placeholder="Your name" required></div>
-        <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="your@email.com" required></div>
-        <div class="form-group"><label>Message</label><textarea name="message" placeholder="Tell me about your project or opportunity..."></textarea></div>
+      <form action="https://formspree.io/f/mkoyqzjg" method="POST" novalidate>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="your@email.com" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Tell me about your project or opportunity..."></textarea>
+        </div>
         <button type="submit" class="btn btn-primary">Send message →</button>
       </form>
     </div>
@@ -453,10 +479,27 @@
 
 <footer>
   <span>© 2026 Andisa Khumalo</span>
-  <span>ECE Student  South Africa</span>
+  <span>ECE Student — South Africa</span>
 </footer>
 
 <script>
+  // Mobile menu toggle
+  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+  const navLinks = document.getElementById('nav-links');
+  
+  if (mobileMenuToggle) {
+    mobileMenuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+    
+    // Close menu when a link is clicked
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+  }
+
   // Dark/Light mode toggle
   const themeToggle = document.getElementById('theme-toggle');
   const htmlElement = document.documentElement;
