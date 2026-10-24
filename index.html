@@ -1,558 +1,702 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Andisa Khumalo — final-year Electrical and Computer Engineering student at the University of Zululand, with projects in embedded systems, robotics, industrial automation and software development.">
-<meta name="keywords" content="Electrical Engineering, Computer Engineering, PLC, Embedded Systems, Full-Stack, IoT, South Africa">
+<meta name="keywords" content="Electrical Engineering, Computer Engineering, PLC, Embedded Systems, Full-Stack, IoT, Robotics, South Africa">
 <meta property="og:title" content="Andisa Khumalo — Portfolio">
 <meta property="og:description" content="Final-year Electrical and Computer Engineering student showcasing projects in embedded systems, autonomous robotics, industrial automation and software development.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://andisaKhumalo.github.io">
 <meta property="og:image" content="https://andisaKhumalo.github.io/AK-Mechanics.png">
-<meta name="theme-color" content="#0b0c0f">
+<meta name="theme-color" content="#0a0d12">
 <link rel="canonical" href="https://andisaKhumalo.github.io">
-<title>Andisa Khumalo — Portfolio</title>
+<title>Andisa Khumalo — Electrical &amp; Computer Engineer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" as="style">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
   :root {
-    --bg: #0b0c0f;
-    --bg2: #13151a;
-    --bg3: #1c1f27;
-    --accent: #00e5a0;
-    --accent2: #0099ff;
-    --text: #f0f0ee;
-    --muted: #7a7e8a;
-    --border: rgba(255,255,255,0.08);
-    --card-bg: #13151a;
-    --font-head: 'Syne', sans-serif;
-    --font-mono: 'IBM Plex Mono', monospace;
-    --font-serif: 'Instrument Serif', serif;
+    --bg: #0a0d12;
+    --bg-alt: #0e1218;
+    --surface: #121720;
+    --surface-2: #181e29;
+    --line: rgba(255,255,255,0.07);
+    --line-strong: rgba(255,255,255,0.14);
+    --text: #e8ebf0;
+    --text-2: #a3abb8;
+    --muted: #6b7482;
+    --accent: #f5a524;          /* signal amber */
+    --accent-soft: rgba(245,165,36,0.12);
+    --accent-2: #4fb3ff;        /* trace blue */
+    --accent-2-soft: rgba(79,179,255,0.12);
+    --ok: #3ddc97;
+    --grid: rgba(79,179,255,0.05);
+    --radius: 10px;
+    --font: 'Inter Tight', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    --shadow: 0 1px 0 rgba(255,255,255,0.03) inset, 0 20px 40px -24px rgba(0,0,0,0.6);
   }
 
   [data-theme="light"] {
-    --bg: #f5f5f4;
-    --bg2: #ececeb;
-    --bg3: #dcdcda;
-    --text: #1a1a18;
-    --muted: #555550;
-    --border: rgba(0,0,0,0.1);
-    --card-bg: #ececeb;
+    --bg: #f6f7f9;
+    --bg-alt: #eef0f4;
+    --surface: #ffffff;
+    --surface-2: #f2f4f7;
+    --line: rgba(15,23,42,0.08);
+    --line-strong: rgba(15,23,42,0.16);
+    --text: #0f172a;
+    --text-2: #3f4a5c;
+    --muted: #6b7482;
+    --accent: #c77700;
+    --accent-soft: rgba(199,119,0,0.1);
+    --accent-2: #0b6bcb;
+    --accent-2-soft: rgba(11,107,203,0.08);
+    --ok: #0f9d63;
+    --grid: rgba(11,107,203,0.05);
+    --shadow: 0 1px 2px rgba(15,23,42,0.04), 0 12px 32px -20px rgba(15,23,42,0.18);
   }
 
-  html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--text); font-family: var(--font-mono); font-size: 14px; line-height: 1.6; transition: background 0.3s, color 0.3s; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: var(--font); font-size: 16px; line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    transition: background .3s, color .3s;
+  }
   a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 2rem; }
+  .mono { font-family: var(--mono); }
 
+  /* ---------- NAV ---------- */
   nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 3rem; height: 60px;
-    background: rgba(11,12,15,0.9);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    transition: background 0.3s, border-color 0.3s;
+    position: fixed; inset: 0 0 auto 0; z-index: 100; height: 64px;
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
   }
+  .nav-inner { height: 100%; display: flex; align-items: center; justify-content: space-between; }
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 15px; letter-spacing: -0.01em; }
+  .logo-mark {
+    width: 32px; height: 32px; border-radius: 7px; display: grid; place-items: center;
+    border: 1px solid var(--line-strong); background: var(--surface);
+    font-family: var(--mono); font-size: 12px; color: var(--accent);
+  }
+  .logo small { font-family: var(--mono); font-weight: 400; font-size: 11px; color: var(--muted); }
+  .nav-links { display: flex; align-items: center; gap: 0.25rem; }
+  .nav-links a.nav-item {
+    font-size: 14px; color: var(--text-2); padding: 8px 14px; border-radius: 6px; transition: color .2s, background .2s;
+  }
+  .nav-links a.nav-item:hover { color: var(--text); background: var(--surface-2); }
+  .icon-btn {
+    width: 36px; height: 36px; border-radius: 6px; border: 1px solid var(--line-strong);
+    background: transparent; color: var(--text-2); cursor: pointer; display: grid; place-items: center;
+    transition: border-color .2s, color .2s; margin-left: .5rem;
+  }
+  .icon-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .icon-btn svg { width: 16px; height: 16px; }
+  .menu-btn { display: none; }
 
-  [data-theme="light"] nav {
-    background: rgba(245,245,244,0.95);
-  }
-
-  .nav-logo { font-family: var(--font-head); font-size: 16px; font-weight: 800; }
-  .nav-logo span { color: var(--accent); }
-  .nav-links { display: flex; gap: 2rem; align-items: center; }
-  .nav-links a { font-size: 12px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; }
-  .nav-links a:hover { color: var(--accent); }
-  
-  .theme-toggle {
-    background: transparent; border: 1px solid var(--border); border-radius: 4px;
-    padding: 6px 12px; cursor: pointer; font-size: 14px; color: var(--muted);
-    transition: all 0.2s; font-family: var(--font-mono);
-  }
-  .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
-
-  .nav-cv {
-    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
-    padding: 7px 16px; border: 1px solid var(--accent);
-    border-radius: 3px; color: var(--accent);
-    transition: all 0.2s; cursor: pointer;
-    font-family: var(--font-mono);
-  }
-  .nav-cv:hover { background: var(--accent); color: #0b0c0f; }
-
-  section { padding: 6rem 3rem; max-width: 1100px; margin: 0 auto; }
-
-  /* HERO */
-  #hero {
-    min-height: 100vh; display: flex; flex-direction: column;
-    justify-content: center; padding-top: 100px; position: relative; overflow: hidden;
-  }
-  .hero-tag {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 2rem;
-  }
-  .hero-tag::before { content: ''; display: inline-block; width: 24px; height: 1px; background: var(--accent); }
-  h1.hero-name {
-    font-family: var(--font-head); font-size: clamp(52px, 8vw, 96px);
-    font-weight: 800; line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 1.5rem;
-  }
-  h1.hero-name .line2 { color: transparent; -webkit-text-stroke: 1px rgba(240,240,238,0.3); }
-  .hero-desc { font-size: 13px; color: var(--muted); max-width: 500px; line-height: 1.8; margin-bottom: 2.5rem; }
-  .hero-desc .highlight { color: var(--accent); }
-  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+  /* ---------- BUTTONS ---------- */
   .btn {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 12px 24px; font-family: var(--font-mono); font-size: 12px;
-    letter-spacing: 0.08em; border-radius: 4px; cursor: pointer; transition: all 0.2s; border: none;
+    display: inline-flex; align-items: center; gap: 8px; font-family: var(--font);
+    font-size: 14px; font-weight: 600; padding: 11px 20px; border-radius: 7px;
+    border: 1px solid transparent; cursor: pointer; transition: all .2s; white-space: nowrap;
   }
-  .btn-primary { background: var(--accent); color: #0b0c0f; font-weight: 500; }
-  .btn-primary:hover { background: #00ffb3; transform: translateY(-1px); }
-  .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
-  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
-  .btn-cv {
-    background: transparent; color: var(--accent);
-    border: 1px solid var(--accent); font-weight: 500;
+  .btn svg { width: 15px; height: 15px; }
+  .btn-primary { background: var(--accent); color: #111; }
+  .btn-primary:hover { filter: brightness(1.08); transform: translateY(-1px); }
+  .btn-ghost { border-color: var(--line-strong); color: var(--text); background: var(--surface); }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-sm { padding: 8px 14px; font-size: 13px; margin-left: .5rem; }
+
+  /* ---------- HERO ---------- */
+  #hero { position: relative; padding: 140px 0 80px; overflow: hidden; }
+  #hero::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
   }
-  .btn-cv:hover { background: var(--accent); color: #0b0c0f; transform: translateY(-1px); }
-  .hero-stats {
-    display: flex; gap: 3rem; margin-top: 4rem;
-    padding-top: 2rem; border-top: 1px solid var(--border);
+  .hero-grid { position: relative; display: grid; grid-template-columns: 1.35fr 1fr; gap: 3.5rem; align-items: center; }
+  .status {
+    display: inline-flex; align-items: center; gap: 10px; padding: 6px 12px 6px 10px;
+    border: 1px solid var(--line-strong); border-radius: 999px; background: var(--surface);
+    font-family: var(--mono); font-size: 12px; color: var(--text-2); margin-bottom: 1.75rem;
   }
-  .stat-num { font-family: var(--font-head); font-size: 32px; font-weight: 800; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 4px color-mix(in srgb, var(--ok) 20%, transparent); }
+  h1 {
+    font-size: clamp(44px, 6.5vw, 76px); font-weight: 800; line-height: 1.0;
+    letter-spacing: -0.035em; margin-bottom: 1.25rem;
+  }
+  h1 .role { display: block; font-size: 0.42em; font-weight: 500; letter-spacing: -0.015em; color: var(--text-2); margin-top: .9rem; line-height: 1.25; }
+  h1 .role b { color: var(--accent); font-weight: 600; }
+  .hero-lead { font-size: 17px; color: var(--text-2); max-width: 560px; margin-bottom: 2rem; }
+  .hero-ctas { display: flex; flex-wrap: wrap; gap: .75rem; }
+
+  /* spec sheet */
+  .spec {
+    background: var(--surface); border: 1px solid var(--line-strong); border-radius: var(--radius);
+    box-shadow: var(--shadow); overflow: hidden; font-family: var(--mono); font-size: 13px;
+  }
+  .spec-head {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 18px; border-bottom: 1px solid var(--line); background: var(--surface-2);
+    color: var(--muted); font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+  }
+  .spec-head .leds { display: flex; gap: 6px; }
+  .spec-head .leds i { width: 8px; height: 8px; border-radius: 50%; background: var(--line-strong); }
+  .spec-head .leds i:first-child { background: var(--accent); }
+  .spec-row { display: grid; grid-template-columns: 110px 1fr; gap: 1rem; padding: 12px 18px; border-bottom: 1px dashed var(--line); }
+  .spec-row:last-child { border-bottom: none; }
+  .spec-row dt { color: var(--muted); }
+  .spec-row dd { color: var(--text); }
+  .spec-row dd .hl { color: var(--accent-2); }
+
+  /* stats */
+  .stats { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 4.5rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+  .stat { padding: 1.4rem 1.5rem; border-right: 1px solid var(--line); }
+  .stat:last-child { border-right: none; }
+  .stat-num { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; }
   .stat-num span { color: var(--accent); }
-  .stat-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
-  .grid-overlay {
-    position: absolute; inset: 0;
-    background-image: linear-gradient(rgba(0,229,160,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,229,160,0.04) 1px, transparent 1px);
-    background-size: 60px 60px; pointer-events: none;
-    mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 20%, transparent 100%);
-  }
-  .glow-orb {
-    position: absolute; width: 600px; height: 600px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,229,160,0.06) 0%, transparent 70%);
-    top: -200px; right: -100px; pointer-events: none;
-  }
+  .stat-label { font-family: var(--mono); font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin-top: 2px; }
 
-  /* SECTION HEADERS */
-  .section-label {
-    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 1rem;
-    display: flex; align-items: center; gap: 12px;
-  }
-  .section-label::after { content: ''; flex: 1; max-width: 60px; height: 1px; background: var(--accent); }
-  h2.section-title { font-family: var(--font-head); font-size: clamp(32px, 4vw, 48px); font-weight: 700; line-height: 1.1; margin-bottom: 1.5rem; }
+  /* ---------- SECTIONS ---------- */
+  section.block { padding: 96px 0; border-top: 1px solid var(--line); }
+  section.block.alt { background: var(--bg-alt); }
+  .sec-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; margin-bottom: 3rem; flex-wrap: wrap; }
+  .sec-index { font-family: var(--mono); font-size: 12px; color: var(--accent); letter-spacing: .1em; text-transform: uppercase; margin-bottom: .75rem; display: flex; align-items: center; gap: 10px; }
+  .sec-index::before { content: ''; width: 18px; height: 1px; background: var(--accent); }
+  h2 { font-size: clamp(30px, 3.6vw, 42px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.1; }
+  .sec-note { max-width: 380px; color: var(--muted); font-size: 15px; }
 
-  /* ABOUT */
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-top: 3rem; }
-  .about-text p { color: var(--muted); line-height: 1.9; font-size: 13px; margin-bottom: 1rem; }
-  .about-text p em { color: var(--text); font-style: normal; }
-  .skills-list { display: flex; flex-direction: column; gap: 1rem; }
-  .skill-row { display: flex; align-items: center; gap: 12px; }
-  .skill-name { font-size: 12px; color: var(--muted); min-width: 140px; letter-spacing: 0.05em; }
-  .skill-bar { flex: 1; height: 2px; background: var(--border); border-radius: 2px; overflow: hidden; }
-  .skill-fill { height: 100%; background: var(--accent); border-radius: 2px; width: 0; animation: fillSkill 1.2s ease-out forwards; }
-  
-  @keyframes fillSkill {
-    from { width: 0; }
-    to { width: var(--skill-width); }
-  }
+  /* ---------- ABOUT ---------- */
+  .about-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 3.5rem; }
+  .about-text p { color: var(--text-2); margin-bottom: 1.1rem; font-size: 16.5px; }
+  .about-text strong { color: var(--text); font-weight: 600; }
+  .focus { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1.5rem; }
+  .chip { font-family: var(--mono); font-size: 12px; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line-strong); color: var(--text-2); background: var(--surface); }
 
-  .skill-pct { font-size: 11px; color: var(--muted); min-width: 30px; text-align: right; }
-  .skill-groups { gap: 1.1rem; }
-  .skill-groups h3 { font-family: var(--font-head); font-size: 13px; margin-bottom: 4px; color: var(--text); }
-  .skill-groups p { color: var(--muted); font-size: 11px; line-height: 1.8; }
-  .skill-groups .skills-note { border-top: 1px solid var(--border); padding-top: 0.8rem; font-size: 10px; }
+  .skills { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .skill-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.25rem 1.3rem; transition: border-color .2s; }
+  .skill-card:hover { border-color: var(--line-strong); }
+  .skill-card h3 { font-size: 15px; font-weight: 600; margin-bottom: .8rem; display: flex; align-items: center; gap: 10px; }
+  .skill-card h3 .ic { width: 28px; height: 28px; border-radius: 6px; display: grid; place-items: center; background: var(--accent-2-soft); color: var(--accent-2); }
+  .skill-card h3 .ic svg { width: 15px; height: 15px; }
+  .skill-card ul { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
+  .skill-card li { font-family: var(--mono); font-size: 11.5px; color: var(--text-2); padding: 3px 8px; border-radius: 4px; background: var(--surface-2); }
+  .skills-note { grid-column: 1 / -1; font-size: 13px; color: var(--muted); font-style: italic; }
 
-  /* PROJECTS */
-  .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
-  .project-card {
-   border-radius: 8px; padding: 1.75rem; position: relative; overflow: hidden; display: flex; flex-direction: column;
-    background: var(--card-bg); border: 1px solid var(--border);
-    transition: border-color 0.2s, transform 0.2s;
+  /* ---------- PROJECTS ---------- */
+  .featured {
+    display: grid; grid-template-columns: 1.1fr 1fr; background: var(--surface);
+    border: 1px solid var(--line-strong); border-radius: 14px; overflow: hidden; box-shadow: var(--shadow); margin-bottom: 1.5rem;
   }
-  .project-card::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
-  }
-  .project-card:hover { border-color: rgba(0,229,160,0.3); transform: translateY(-2px); }
-  .project-card:hover::before { transform: scaleX(1); }
-  .project-card.featured { grid-column: span 3; }
-  .featured-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
-  .project-num { font-size: 11px; color: rgba(0,229,160,0.4); letter-spacing: 0.1em; margin-bottom: 0.75rem; }
-  .project-title { font-family: var(--font-head); font-size: 18px; font-weight: 700; margin-bottom: 0.75rem; line-height: 1.2; }
-  .project-desc { font-size: 12px; color: var(--muted); line-height: 1.8; margin-bottom: 1.5rem; }
-  .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.25rem; }
-  .tag { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 10px; border-radius: 2px; border: 1px solid var(--border); color: var(--muted); }
-  .tag.hw { border-color: rgba(0,229,160,0.3); color: var(--accent); }
-  .tag.sw { border-color: rgba(0,153,255,0.3); color: var(--accent2); }
-  .project-links { display: flex; gap: 1rem; margin-top: auto; padding-top: 1rem; }
-  .project-links a { font-size: 11px; letter-spacing: 0.08em; color: var(--muted); display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
-  .project-links a:hover { color: var(--accent); }
-  .project-img-placeholder {
-    aspect-ratio: 16/9; background: var(--bg3); border-radius: 4px;
-    border: 1px solid var(--border); display: flex; flex-direction: column;
-    align-items: center; justify-content: center; gap: 8px;
-    color: var(--muted); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
-  }
-  .project-img-placeholder .big-icon { font-size: 36px; opacity: 0.3; }
-  .project-img-placeholder img { width: 100%; height: 100%; object-fit: cover; border-radius: 4px; }
-  .project-photo { width: 100%; aspect-ratio: 4/3; overflow: hidden; border-radius: 4px; border: 1px solid var(--border); background: var(--bg3); }
-  .project-photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+  .featured-body { padding: 2.25rem; display: flex; flex-direction: column; }
+  .p-meta { display: flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 11.5px; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 1rem; }
+  .badge { padding: 3px 9px; border-radius: 4px; background: var(--accent-soft); color: var(--accent); font-weight: 500; }
+  .badge.blue { background: var(--accent-2-soft); color: var(--accent-2); }
+  .p-title { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: .9rem; }
+  .p-desc { color: var(--text-2); font-size: 15px; margin-bottom: 1.25rem; }
+  .p-list { list-style: none; margin-bottom: 1.5rem; display: grid; gap: .55rem; }
+  .p-list li { position: relative; padding-left: 20px; color: var(--text-2); font-size: 14.5px; }
+  .p-list li::before { content: ''; position: absolute; left: 0; top: .62em; width: 8px; height: 8px; border: 1.5px solid var(--accent); border-radius: 2px; }
+  .metrics { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--line); border-radius: 8px; margin-bottom: 1.25rem; }
+  .metric { padding: .85rem .9rem; border-right: 1px solid var(--line); }
+  .metric:last-child { border-right: none; }
+  .metric b { display: block; font-family: var(--mono); font-size: 17px; font-weight: 500; color: var(--text); }
+  .metric span { font-family: var(--mono); font-size: 10.5px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+  .p-foot { font-size: 13px; color: var(--muted); margin-bottom: 1.25rem; padding-left: 12px; border-left: 2px solid var(--line-strong); }
 
-  /* EXPERIENCE */
-  .timeline { margin-top: 3rem; display: flex; flex-direction: column; }
-  .timeline-item { display: grid; grid-template-columns: 160px 1fr; gap: 2rem; padding-bottom: 2.5rem; position: relative; }
-  .timeline-item::after { content: ''; position: absolute; left: 159px; top: 8px; bottom: 0; width: 1px; background: var(--border); }
-  .timeline-item:last-child::after { display: none; }
-  .timeline-date { font-size: 11px; letter-spacing: 0.08em; color: var(--muted); text-align: right; padding-top: 2px; }
-  .timeline-dot { position: absolute; left: 153px; top: 6px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--accent); background: var(--bg); z-index: 1; }
-  .timeline-content h3 { font-family: var(--font-head); font-size: 15px; font-weight: 700; margin-bottom: 4px; }
-  .timeline-content .org { font-size: 12px; color: var(--accent); margin-bottom: 0.75rem; }
-  .timeline-content p { font-size: 12px; color: var(--muted); line-height: 1.8; }
-
-  /* CV BANNER */
-  .cv-banner {
-    margin: 0 3rem 0; max-width: 1100px; margin-left: auto; margin-right: auto;
-    background: var(--bg2); border: 1px solid rgba(0,229,160,0.2);
-    border-radius: 8px; padding: 2rem 2.5rem;
-    display: flex; align-items: center; justify-content: space-between; gap: 2rem;
-    flex-wrap: wrap;
+  .featured-media { position: relative; background: var(--surface-2); border-left: 1px solid var(--line); min-height: 360px; }
+  .featured-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .media-fallback {
+    position: absolute; inset: 0; display: none; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+    color: var(--muted); font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: .08em;
+    background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 24px 24px;
   }
-  .cv-banner-text h3 { font-family: var(--font-head); font-size: 20px; font-weight: 700; margin-bottom: 4px; }
-  .cv-banner-text p { font-size: 12px; color: var(--muted); }
+  .featured-media.no-img .media-fallback { display: flex; }
+  .media-tag { position: absolute; left: 14px; bottom: 14px; font-family: var(--mono); font-size: 11px; padding: 5px 10px; border-radius: 4px; background: rgba(10,13,18,0.75); color: #e8ebf0; backdrop-filter: blur(6px); }
 
-  /* CONTACT */
-  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 3rem; }
-  .contact-info h3 { font-family: var(--font-head); font-size: 28px; font-weight: 700; line-height: 1.2; margin-bottom: 1rem; }
-  .contact-info h3 span { font-family: var(--font-serif); font-style: italic; color: var(--accent); }
-  .contact-info p { font-size: 12px; color: var(--muted); line-height: 1.9; margin-bottom: 1.5rem; }
-  .contact-links { display: flex; flex-direction: column; gap: 0; }
-  .contact-link { display: flex; align-items: center; gap: 12px; font-size: 12px; color: var(--muted); padding: 12px 0; border-bottom: 1px solid var(--border); transition: color 0.2s; }
-  .contact-link:hover { color: var(--accent); }
-  .contact-link .lbl { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(0,229,160,0.5); min-width: 60px; }
-  .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 1rem; }
-  .form-group label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
-  .form-group input, .form-group textarea {
-    background: var(--bg2); border: 1px solid var(--border); border-radius: 4px;
-    padding: 10px 14px; font-family: var(--font-mono); font-size: 13px; color: var(--text);
-    outline: none; transition: border-color 0.2s; resize: vertical;
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.25rem; }
+  .tag { font-family: var(--mono); font-size: 11px; padding: 4px 9px; border-radius: 4px; border: 1px solid var(--line-strong); color: var(--text-2); }
+  .tag.hw { border-color: color-mix(in srgb, var(--accent) 40%, transparent); color: var(--accent); }
+  .tag.sw { border-color: color-mix(in srgb, var(--accent-2) 40%, transparent); color: var(--accent-2); }
+
+  .links { display: flex; flex-wrap: wrap; gap: 1.25rem; margin-top: auto; padding-top: .5rem; }
+  .links a { font-size: 14px; font-weight: 600; color: var(--text); display: inline-flex; align-items: center; gap: 6px; border-bottom: 1px solid var(--line-strong); padding-bottom: 2px; transition: color .2s, border-color .2s; }
+  .links a:hover { color: var(--accent); border-color: var(--accent); }
+  .links a svg { width: 13px; height: 13px; }
+
+  .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 1.75rem; display: flex; flex-direction: column; transition: border-color .2s, transform .2s;
   }
-  .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); }
-  .form-group textarea { min-height: 100px; }
+  .card:hover { border-color: var(--line-strong); transform: translateY(-2px); }
+  .card .p-title { font-size: 20px; }
+  .card .p-desc { font-size: 14.5px; }
 
-  footer {
-    border-top: 1px solid var(--border); padding: 2rem 3rem;
-    display: flex; align-items: center; justify-content: space-between;
-    max-width: 1100px; margin: 0 auto; font-size: 11px; color: var(--muted); letter-spacing: 0.05em;
+  /* ---------- EXPERIENCE ---------- */
+  .timeline { position: relative; display: grid; gap: 1rem; }
+  .t-item {
+    display: grid; grid-template-columns: 170px 1fr; gap: 2rem; padding: 1.6rem 1.75rem;
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
   }
+  .t-date { font-family: var(--mono); font-size: 12.5px; color: var(--muted); padding-top: 3px; }
+  .t-date .t-type { display: inline-block; margin-top: .5rem; }
+  .t-item h3 { font-size: 18px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 2px; }
+  .t-org { font-size: 14px; color: var(--accent-2); margin-bottom: .7rem; font-weight: 500; }
+  .t-item p { color: var(--text-2); font-size: 14.5px; }
 
-  /* MOBILE MENU */
-  .mobile-menu-toggle { display: none; }
-  @media (max-width: 768px) {
-    nav { padding: 0 1.5rem; }
-    .nav-links { position: absolute; top: 60px; left: 0; right: 0; flex-direction: column; background: var(--bg); border-bottom: 1px solid var(--border); padding: 1rem 0; gap: 0; display: none; }
-    .nav-links.active { display: flex; }
-    .nav-links a { padding: 0.75rem 1.5rem; width: 100%; }
-    .mobile-menu-toggle { display: flex; align-items: center; justify-content: center; background: transparent; border: 1px solid var(--border); border-radius: 4px; padding: 6px 12px; cursor: pointer; font-size: 16px; }
-    section { padding: 4rem 1.5rem; }
-    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .projects-grid { grid-template-columns: 1fr; }
-    .project-card.featured { grid-column: span 1; }
-    .featured-inner { grid-template-columns: 1fr; }
-    h1.hero-name { font-size: 48px; }
-    .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
-    .timeline-item { grid-template-columns: 90px 1fr; gap: 1rem; }
-    .timeline-item::after { left: 89px; }
-    .timeline-dot { left: 83px; }
-    .cv-banner { flex-direction: column; align-items: flex-start; }
-    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  /* ---------- CV ---------- */
+  .cv {
+    display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;
+    padding: 2.25rem 2.5rem; border-radius: 14px; border: 1px solid var(--line-strong);
+    background:
+      linear-gradient(120deg, var(--accent-soft), transparent 60%),
+      var(--surface);
+  }
+  .cv h3 { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 4px; }
+  .cv p { color: var(--text-2); font-size: 15px; }
+
+  /* ---------- CONTACT ---------- */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; }
+  .contact-lead { color: var(--text-2); font-size: 16.5px; margin-bottom: 2rem; max-width: 460px; }
+  .c-list { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); overflow: hidden; }
+  .c-row { display: grid; grid-template-columns: 100px 1fr auto; align-items: center; gap: 1rem; padding: 1rem 1.25rem; border-bottom: 1px solid var(--line); transition: background .2s; }
+  .c-row:last-child { border-bottom: none; }
+  .c-row:hover { background: var(--surface-2); }
+  .c-row .lbl { font-family: var(--mono); font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+  .c-row .val { font-size: 15px; font-weight: 500; overflow-wrap: anywhere; }
+  .c-row svg { width: 15px; height: 15px; color: var(--muted); }
+
+  form.contact-form { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.75rem; }
+  .f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 1rem; }
+  .field label { font-family: var(--mono); font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+  .field input, .field textarea {
+    font-family: var(--font); font-size: 15px; color: var(--text); background: var(--bg);
+    border: 1px solid var(--line-strong); border-radius: 7px; padding: 11px 13px; outline: none; transition: border-color .2s, box-shadow .2s; resize: vertical;
+  }
+  .field input:focus, .field textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  .field textarea { min-height: 130px; }
+
+  footer { border-top: 1px solid var(--line); padding: 2rem 0; }
+  .foot { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; font-family: var(--mono); font-size: 12px; color: var(--muted); }
+
+  /* reveal */
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; } }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 960px) {
+    .hero-grid, .about-grid, .contact-grid, .featured { grid-template-columns: 1fr; }
+    .featured-media { border-left: none; border-top: 1px solid var(--line); min-height: 280px; order: -1; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat:nth-child(2) { border-right: none; }
+    .stat:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+  }
+  @media (max-width: 760px) {
+    .wrap { padding: 0 1rem; }
+    .menu-btn { display: grid; }
+    .nav-links {
+      position: absolute; top: 64px; left: 0; right: 0; flex-direction: column; align-items: stretch;
+      background: var(--bg); border-bottom: 1px solid var(--line); padding: .75rem 1rem 1rem; gap: .25rem; display: none;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links .icon-btn, .nav-links .btn-sm { margin-left: 0; }
+    .nav-links .icon-btn { width: 100%; }
+    .nav-links .btn-sm { justify-content: center; }
+    #hero { padding: 110px 0 60px; }
+    section.block { padding: 72px 0; }
+    .projects-grid, .skills, .f-row { grid-template-columns: 1fr; }
+    .metrics { grid-template-columns: repeat(2, 1fr); }
+    .metric:nth-child(2) { border-right: none; }
+    .metric:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+    .featured-body, .card { padding: 1.4rem; }
+    .t-item { grid-template-columns: 1fr; gap: .5rem; padding: 1.3rem; }
+    .c-row { grid-template-columns: 1fr auto; }
+    .c-row .lbl { grid-column: 1 / -1; }
+    .cv { padding: 1.6rem; }
+    .spec-row { grid-template-columns: 90px 1fr; }
   }
 </style>
 </head>
 <body>
 
+<!-- ================= NAV ================= -->
 <nav>
-  <div class="nav-logo">AK<span>.</span></div>
-  <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation menu">☰</button>
-  <div class="nav-links" id="nav-links">
-    <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="#experience">Experience</a>
-    <a href="#contact">Contact</a>
-    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
-    <a href="cv.pdf" download class="nav-cv">↓ CV</a>
+  <div class="wrap nav-inner">
+    <a href="#hero" class="logo">
+      <span class="logo-mark">AK</span>
+      <span>Andisa Khumalo <small>/ ECE</small></span>
+    </a>
+    <button class="icon-btn menu-btn" id="menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <div class="nav-links" id="nav-links">
+      <a class="nav-item" href="#about">About</a>
+      <a class="nav-item" href="#projects">Projects</a>
+      <a class="nav-item" href="#experience">Experience</a>
+      <a class="nav-item" href="#contact">Contact</a>
+      <button class="icon-btn" id="theme-toggle" aria-label="Toggle dark/light mode"></button>
+      <a href="cv.pdf" download class="btn btn-primary btn-sm">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>
+        CV
+      </a>
+    </div>
   </div>
 </nav>
 
-<!-- HERO -->
-<section id="hero">
-  <div class="grid-overlay"></div>
-  <div class="glow-orb"></div>
-  <div class="hero-tag">ECE Undergraduate — University of Zululand (SA)</div>
-  <h1 class="hero-name">Andisa<br><span class="line2">Khumalo</span></h1>
-  <p class="hero-desc">
-    Final-year Electrical &amp; Computer Engineering student at <span class="highlight">the University of Zululand</span>, building practical solutions across embedded systems, robotics, industrial automation and software.
-  </p>
-  <div class="hero-ctas">
-    <a href="#projects" class="btn btn-primary">View my work ↓</a>
-    <a href="#contact" class="btn btn-outline">Get in touch</a>
-    <a href="cv.pdf" download class="btn btn-cv">↓ Download CV</a>
+<!-- ================= HERO ================= -->
+<header id="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="status"><span class="dot"></span>Open to graduate opportunities</div>
+        <h1>Andisa Khumalo
+          <span class="role">Electrical &amp; Computer Engineering — <b>embedded systems, automation &amp; robotics</b></span>
+        </h1>
+        <p class="hero-lead">Final-year BEng student at the University of Zululand, building practical solutions that bridge hardware and software — from autonomous vehicles and PLC control logic to full-stack applications.</p>
+        <div class="hero-ctas">
+          <a href="#projects" class="btn btn-primary">View projects
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14m0 0-6-6m6 6 6-6"/></svg>
+          </a>
+          <a href="cv.pdf" download class="btn btn-ghost">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>
+            Download CV
+          </a>
+          <a href="#contact" class="btn btn-ghost">Get in touch</a>
+        </div>
+      </div>
+
+      <aside class="spec" aria-label="Profile summary">
+        <div class="spec-head"><span>profile.spec</span><span class="leds"><i></i><i></i><i></i></span></div>
+        <dl>
+          <div class="spec-row"><dt>Degree</dt><dd>BEng Electrical &amp; Computer Eng.</dd></div>
+          <div class="spec-row"><dt>Institution</dt><dd>University of Zululand</dd></div>
+          <div class="spec-row"><dt>Completion</dt><dd><span class="hl">2026</span></dd></div>
+          <div class="spec-row"><dt>Location</dt><dd>South Africa</dd></div>
+          <div class="spec-row"><dt>Focus</dt><dd>Embedded · Automation · Robotics · Software</dd></div>
+          <div class="spec-row"><dt>Stack</dt><dd>Python · C/C++ · Structured Text · C# · Kotlin</dd></div>
+        </dl>
+      </aside>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="stat-num">5<span>+</span></div><div class="stat-label">Selected projects</div></div>
+      <div class="stat"><div class="stat-num">4<span>th</span></div><div class="stat-label">Year BEng</div></div>
+      <div class="stat"><div class="stat-num">HW<span>+</span>SW</div><div class="stat-label">Integrated systems</div></div>
+      <div class="stat"><div class="stat-num">2026</div><div class="stat-label">Graduating</div></div>
+    </div>
   </div>
-  <div class="hero-stats">
-    <div><div class="stat-num">5<span>+</span></div><div class="stat-label">Selected projects</div></div>
-    <div><div class="stat-num">4<span>th</span></div><div class="stat-label">Year ECE</div></div>
-    <div><div class="stat-num">HW<span>+</span>SW</div><div class="stat-label">Hardware &amp; software</div></div>
+</header>
+
+<!-- ================= ABOUT ================= -->
+<section class="block" id="about">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-index">01 — About</div>
+        <h2>Engineer. Builder.<br>Problem solver.</h2>
+      </div>
+    </div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>I'm a final-year <strong>Electrical &amp; Computer Engineering</strong> student with hands-on project experience across PLC automation, embedded systems and full-stack web development. I enjoy real-world engineering challenges that bridge hardware and software.</p>
+        <p>My projects include an autonomous RC vehicle, a vehicle-service web application, PLC control logic and an RFID-based luggage-tracking system — each one building practical skill in integrating hardware, software and control logic.</p>
+        <p>I'm looking for graduate opportunities in <strong>automation, embedded systems, robotics, energy, manufacturing and digital technology</strong>, where I can keep learning while contributing to real engineering work.</p>
+        <div class="focus">
+          <span class="chip">Automation</span><span class="chip">Embedded</span><span class="chip">Robotics</span>
+          <span class="chip">Energy</span><span class="chip">Manufacturing</span><span class="chip">Digital tech</span>
+        </div>
+      </div>
+
+      <div class="skills reveal">
+        <div class="skill-card">
+          <h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg></span>Embedded &amp; robotics</h3>
+          <ul><li>Raspberry Pi</li><li>Python</li><li>OpenCV</li><li>CNN inference</li><li>Camera integration</li><li>PWM / actuators</li></ul>
+        </div>
+        <div class="skill-card">
+          <h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>Electrical &amp; automation</h3>
+          <ul><li>PLC Structured Text</li><li>IEC 61131-3</li><li>Control systems</li><li>Circuit design</li><li>Sensors &amp; actuators</li></ul>
+        </div>
+        <div class="skill-card">
+          <h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 6-6 6 6 6M16 6l6 6-6 6"/></svg></span>Software &amp; data</h3>
+          <ul><li>C / C++</li><li>Kotlin</li><li>Jetpack Compose</li><li>ASP.NET Core</li><li>C#</li><li>SQL Server</li><li>Git</li></ul>
+        </div>
+        <div class="skill-card">
+          <h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4 2.5-2.5z"/></svg></span>Tools &amp; platforms</h3>
+          <ul><li>MATLAB / Simulink</li><li>Azure</li><li>Linux</li><li>Android Studio</li></ul>
+        </div>
+        <p class="skills-note">Skills reflect tools used in projects; proficiency varies by task and is best shown through the work below.</p>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="section-label">About me</div>
-  <h2 class="section-title">Engineer. Builder.<br>Problem solver.</h2>
-  <div class="about-grid">
-    <div class="about-text">
-      <p>I'm a final-year <em>Electrical &amp; Computer Engineering</em> student with hands-on experience across industrial automation, embedded systems, and full-stack web development. I enjoy working on real-world engineering challenges that bridge hardware and software.</p>
-      <p>My projects include an autonomous RC vehicle, a vehicle-service web application, PLC control logic and an RFID-based luggage-tracking system. These projects have helped me develop practical skills in integrating hardware, software and control logic.</p>
-      <p>I am interested in graduate opportunities in <em>automation, embedded systems, robotics, energy, manufacturing and digital technology</em>, where I can keep learning while contributing to real engineering work.</p>
+<!-- ================= PROJECTS ================= -->
+<section class="block alt" id="projects">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-index">02 — Selected work</div>
+        <h2>Projects</h2>
+      </div>
+      <p class="sec-note">Hardware, control and software work — from capstone prototypes to deployed applications.</p>
     </div>
-    <div class="skills-list skill-groups">
-      <div><h3>Embedded &amp; robotics</h3><p>Raspberry Pi · Python · OpenCV · CNN inference · Camera integration · PWM / actuator control</p></div>
-      <div><h3>Electrical &amp; automation</h3><p>PLC Structured Text · IEC 61131-3 · Control systems · Circuit design · Sensors and actuators</p></div>
-      <div><h3>Software &amp; data</h3><p>C / C++ · Kotlin · Jetpack Compose · ASP.NET Core · C# · SQL Server · Git</p></div>
-      <div><h3>Tools &amp; platforms</h3><p>MATLAB / Simulink · Azure deployment · Linux · Android Studio</p></div>
-      <p class="skills-note">Skills shown reflect tools used in projects; proficiency varies by task and is best demonstrated through the work below.</p>
+
+    <!-- FEATURED -->
+    <article class="featured reveal">
+      <div class="featured-body">
+        <div class="p-meta"><span class="badge">Featured · Capstone</span><span>P-01</span></div>
+        <h3 class="p-title">AutoRC — Autonomous RC Vehicle</h3>
+        <p class="p-desc">A Raspberry Pi 4B-based autonomous RC car that uses a forward-facing OV5647 camera and a behaviour-cloned CNN to predict steering commands from track images.</p>
+        <ul class="p-list">
+          <li>Steering servo driven through a PCA9685 PWM controller; drive motor through a BTS7960 driver — no Arduino in the final driving loop.</li>
+          <li>Kotlin / Jetpack Compose Android app for live camera view, manual control and autonomous-mode initialisation, backed by Flask control and video-streaming endpoints.</li>
+          <li>Trained over 30 epochs; best validation MSE reached at epoch 11.</li>
+        </ul>
+        <div class="metrics">
+          <div class="metric"><b>1,620</b><span>Labelled pairs</span></div>
+          <div class="metric"><b>0.174</b><span>Best val MSE</span></div>
+          <div class="metric"><b>16.66°</b><span>Steering MAE</span></div>
+          <div class="metric"><b>25.03°</b><span>Steering RMSE</span></div>
+        </div>
+        <p class="p-foot">Ultrasonic obstacle detection is an experimental add-on; the integrated controller is still being refined through track testing.</p>
+        <div class="tags">
+          <span class="tag hw">Raspberry Pi</span><span class="tag sw">Python / CNN</span><span class="tag sw">Computer Vision</span>
+          <span class="tag hw">PCA9685 · BTS7960</span><span class="tag sw">Android · Kotlin</span>
+        </div>
+        <div class="links">
+          <a href="https://drive.google.com/file/d/1f0t8liv9gsN-33thsyS5c-xABiBp_QvW/view" target="_blank" rel="noopener noreferrer">Watch demo video
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+          <a href="https://www.linkedin.com/in/andisa-khumalo-186761235" target="_blank" rel="noopener noreferrer">LinkedIn
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        </div>
+      </div>
+
+      <!-- ===== PICTURE HOLDER: replace AutoRC_Picture.jpeg in your repo (see instructions) ===== -->
+      <div class="featured-media" id="autorc-media">
+        <img src="AutoRC_Picture.jpeg"
+             alt="AutoRC autonomous vehicle prototype showing its custom body, wheels, steering assembly and onboard electronics"
+             loading="lazy"
+             onerror="this.style.display='none'; this.parentElement.classList.add('no-img');">
+        <div class="media-fallback">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-8 8"/></svg>
+          Project photo
+        </div>
+        <span class="media-tag">Prototype · track testing</span>
+      </div>
+    </article>
+
+    <div class="projects-grid">
+      <article class="card reveal">
+        <div class="p-meta"><span class="badge">Academic · Automation</span><span>P-02</span></div>
+        <h3 class="p-title">Pharmaceutical Clean Room PLC System</h3>
+        <p class="p-desc">University project on PLC-based control for a pharmaceutical clean-room HVAC system, including multi-zone pressure-control logic, alarms and SCADA concepts — linking process conditions, control logic and operator monitoring.</p>
+        <div class="tags"><span class="tag hw">PLC</span><span class="tag hw">IEC 61131-3</span><span class="tag hw">SCADA</span><span class="tag sw">Structured Text</span></div>
+      </article>
+
+      <article class="card reveal">
+        <div class="p-meta"><span class="badge blue">Software</span><span>P-03</span></div>
+        <h3 class="p-title">AK Mechanics — Vehicle Service Tracker</h3>
+        <p class="p-desc">Full-stack web application for vehicle service and maintenance management, built with ASP.NET Core MVC, Entity Framework Core, SQL Server and a responsive Bootstrap interface, deployed on Azure.</p>
+        <div class="tags"><span class="tag sw">ASP.NET Core MVC</span><span class="tag sw">C#</span><span class="tag sw">SQL Server</span><span class="tag sw">Azure</span></div>
+        <div class="links">
+          <a href="https://github.com/AndisaKhumalo/AKMechanics" target="_blank" rel="noopener noreferrer">GitHub
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+          <a href="https://akmechanics-bufrgaawdpe7cta3.canadacentral-01.azurewebsites.net/Client" target="_blank" rel="noopener noreferrer">Live demo
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        </div>
+      </article>
+
+      <article class="card reveal">
+        <div class="p-meta"><span class="badge">Control</span><span>P-04</span></div>
+        <h3 class="p-title">MATLAB Smart Vehicle Simulation</h3>
+        <p class="p-desc">MATLAB/Simulink vehicle modelling and control work, using simulation to explore system behaviour and control concepts.</p>
+        <div class="tags"><span class="tag sw">MATLAB</span><span class="tag sw">Simulink</span><span class="tag hw">Control Systems</span><span class="tag sw">PID</span></div>
+      </article>
+
+      <article class="card reveal">
+        <div class="p-meta"><span class="badge blue">IoT · Group</span><span>P-05</span></div>
+        <h3 class="p-title">Smart Airport Luggage Tracking System</h3>
+        <p class="p-desc">Group project proposing an intelligent baggage-tracking system for King Shaka International Airport. My contributions: RFID, GPS and communications, the database and interface, the sensor subsystem and the tracking algorithm.</p>
+        <div class="tags"><span class="tag hw">RFID</span><span class="tag sw">IoT</span><span class="tag sw">System Design</span><span class="tag hw">Networking</span></div>
+        <div class="links">
+          <a href="airport-tracking-report.pdf" target="_blank" rel="noopener noreferrer">Report
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+          <a href="airport-tracking-presentation.pdf" target="_blank" rel="noopener noreferrer">Presentation
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        </div>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="section-label">Selected work</div>
-  <h2 class="section-title">Projects</h2>
-  <div class="projects-grid">
-
-    <div class="project-card featured">
-      <div class="featured-inner">
+<!-- ================= EXPERIENCE ================= -->
+<section class="block" id="experience">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-index">03 — Background</div>
+        <h2>Education &amp; Experience</h2>
+      </div>
+    </div>
+    <div class="timeline">
+      <div class="t-item reveal">
+        <div class="t-date">2023 — Present<br><span class="badge blue t-type">Education</span></div>
         <div>
-          <div class="project-num">01 — Featured</div>
-          <div class="project-title">AutoRC — Autonomous RC Vehicle</div>
-          <div class="project-desc">AutoRC is a Raspberry Pi 4B-based autonomous RC car that uses a forward-facing OV5647 camera and a behaviour-cloned CNN to predict steering commands from track images. The Pi drives the steering servo through a PCA9685 PWM controller and controls the drive motor through a BTS7960 motor driver; the final driving loop does not use an Arduino. A Kotlin/Jetpack Compose Android app provides live camera viewing, manual control and autonomous-mode initialisation, with a Flask backend supporting control endpoints and video streaming. The training dataset contains 1,620 labelled image–steering pairs. Across 30 training epochs, the best validation MSE was 0.174 at epoch 11; the reported steering-angle MAE was 16.66° and RMSE was 25.03°. Ultrasonic obstacle detection is an additional experimental feature, and the integrated autonomous controller is still being refined through track testing.</div>
-          <div class="project-tags">
-            <span class="tag hw">Raspberry Pi</span>
-            <span class="tag sw">Python / CNN</span>
-            <span class="tag sw">Computer Vision</span>
-            <span class="tag hw">PCA9685 · BTS7960</span>
-            <span class="tag sw">Android · Kotlin</span>
+          <h3>BEng — Electrical &amp; Computer Engineering</h3>
+          <div class="t-org">University of Zululand (UZ)</div>
+          <p>Final-year BEng student, expected to complete the degree in 2026. Project work spans embedded systems, industrial automation, computer vision and software development.</p>
+        </div>
+      </div>
+      <div class="t-item reveal">
+        <div class="t-date">Present<br><span class="badge t-type">Capstone</span></div>
+        <div>
+          <h3>AI Autonomous Vehicle Project</h3>
+          <div class="t-org">University of Zululand — Final Year Capstone</div>
+          <p>Developed and track-tested a Raspberry Pi 4B autonomous RC-car prototype using an OV5647 camera, a behavioural-cloning CNN for steering prediction, PCA9685 PWM steering control and a BTS7960 motor driver. A Kotlin/Jetpack Compose Android app supports live video, manual driving and autonomous-mode initialisation through a Flask backend. Ultrasonic obstacle detection is under development.</p>
+        </div>
+      </div>
+      <div class="t-item reveal">
+        <div class="t-date">April 2026<br><span class="badge blue t-type">Project</span></div>
+        <div>
+          <h3>Full Stack Web Development</h3>
+          <div class="t-org">AK Mechanics Application</div>
+          <p>Built an ASP.NET Core MVC application for vehicle service and maintenance management, using Entity Framework Core, SQL Server, a responsive interface and Azure deployment.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CV ================= -->
+<section class="block alt" style="padding: 72px 0;">
+  <div class="wrap">
+    <div class="cv reveal">
+      <div>
+        <h3>Want the full picture?</h3>
+        <p>Download my CV for a complete overview of my education, projects and skills.</p>
+      </div>
+      <a href="cv.pdf" download class="btn btn-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>
+        Download CV (PDF)
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="block" id="contact">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-index">04 — Contact</div>
+        <h2>Let's build something together</h2>
+      </div>
+    </div>
+    <div class="contact-grid">
+      <div class="reveal">
+        <p class="contact-lead">Open to graduate roles, international opportunities, research collaborations, engineering exchange programmes and interesting projects. Based in South Africa.</p>
+        <div class="c-list">
+          <a class="c-row" href="mailto:andisakhumalo.94@gmail.com">
+            <span class="lbl">Email</span><span class="val">andisakhumalo.94@gmail.com</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </a>
+          <a class="c-row" href="https://www.linkedin.com/in/andisa-khumalo-186761235" target="_blank" rel="noopener noreferrer">
+            <span class="lbl">LinkedIn</span><span class="val">Andisa Khumalo</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </a>
+          <a class="c-row" href="https://github.com/AndisaKhumalo?tab=repositories" target="_blank" rel="noopener noreferrer">
+            <span class="lbl">GitHub</span><span class="val">AndisaKhumalo</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </a>
+          <a class="c-row" href="cv.pdf" download>
+            <span class="lbl">CV</span><span class="val">Download PDF</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <form class="contact-form reveal" action="https://formspree.io/f/mkoyqzjg" method="POST">
+        <div class="f-row">
+          <div class="field">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required>
           </div>
-         <div class="project-links">
-  <a href="https://drive.google.com/file/d/1f0t8liv9gsN-33thsyS5c-xABiBp_QvW/view" target="_blank" rel="noopener noreferrer">Open full video ↗</a>
-  <a href="https://www.linkedin.com/in/andisa-khumalo-186761235" target="_blank" rel="noopener noreferrer">LinkedIn profile ↗</a>
-</div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@company.com" required>
+          </div>
         </div>
-        <div class="project-photo">
-          <img src="AutoRC_Picture.jpeg" alt="AutoRC autonomous vehicle prototype showing its custom body, wheels, steering assembly and onboard electronics" loading="lazy">
-        </div>
-      </div>
-    </div>
-
-    <div class="project-card">
-      <div class="project-num">02</div>
-      <div class="project-title">Pharmaceutical Clean Room PLC System</div>
-      <div class="project-desc">PLC-based control-system work focused on pharmaceutical clean-room HVAC, including multi-zone pressure-control logic, alarms and SCADA concepts. The project demonstrates industrial-control design and the relationship between process conditions, control logic and operator monitoring.</div>
-      <div class="project-tags"><span class="tag hw">PLC</span><span class="tag hw">IEC 61131-3</span><span class="tag hw">SCADA</span><span class="tag sw">Structured Text</span></div>
-    </div>
-    <div class="project-card">
-      <div class="project-num">03</div>
-      <div class="project-title">AK Mechanics — Vehicle Service Tracker</div>
-      <div class="project-desc">Full-stack web application for vehicle service and maintenance management, built with ASP.NET Core MVC, Entity Framework Core, SQL Server and a responsive Bootstrap interface, with an Azure-hosted deployment.</div>
-      <div class="project-tags"><span class="tag sw">ASP.NET Core MVC</span><span class="tag sw">C#</span><span class="tag sw">SQL Server</span><span class="tag sw">Azure</span></div>
-      <div class="project-links"><a href="https://github.com/AndisaKhumalo/AKMechanics" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://akmechanics-bufrgaawdpe7cta3.canadacentral-01.azurewebsites.net/Client" target="_blank" rel="noopener noreferrer">Live Demo ↗</a></div>
-     </div>
-
-    <div class="project-card">
-      <div class="project-num">04</div>
-      <div class="project-title">MATLAB Smart Vehicle Simulation</div>
-      <div class="project-desc">MATLAB/Simulink-based vehicle modelling and control work, applying simulation to explore system behaviour and control concepts. Specific methods and results can be added alongside the corresponding model outputs.</div>
-      <div class="project-tags"><span class="tag sw">MATLAB</span><span class="tag sw">Simulink</span><span class="tag hw">Control Systems</span><span class="tag sw">PID</span></div>
-      </div>
-    <div class="project-card">
-      <div class="project-num">05</div>
-      <div class="project-title">Smart Airport Luggage Tracking System</div>
-      <div class="project-desc">Group project proposing an intelligent baggage-tracking system for King Shaka International Airport. My contributions included RFID, GPS and communications, the database and interface, sensor subsystem and tracking algorithm.</div>
-      <div class="project-tags"><span class="tag hw">RFID</span><span class="tag sw">IoT</span><span class="tag sw">System Design</span><span class="tag hw">Networking</span></div>
-      <div class="project-links">
-  <a href="airport-tracking-report.pdf" target="_blank" rel="noopener noreferrer">Report ↗</a>
-  <a href="airport-tracking-presentation.pdf" target="_blank" rel="noopener noreferrer">Presentation ↗</a>
-</div>
-    </div>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section id="experience">
-  <div class="section-label">Background</div>
-  <h2 class="section-title">Education &amp;<br>Experience</h2>
-  <div class="timeline">
-    <div class="timeline-item">
-      <div class="timeline-date">2023 — Present</div>
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">
-        <h3>BEng (Electrical &amp; Computer Engineering)</h3>
-        <div class="org">University of Zululand (UZ)</div>
-        <p>Final-year BEng student, expected to complete the degree in 2026. Project work spans embedded systems, industrial automation, computer vision and software development.</p>
-      </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-date">March 2026</div>
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">
-        <h3>Industrial Automation Internship — Pharmaceutical</h3>
-        <div class="org">Aspen Pharmacare, Port Elizabeth</div>
-        <p>Worked on PLC and pharmaceutical clean-room automation topics, including HVAC control logic and operator-monitoring concepts.</p>
-      </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-date">April 2026</div>
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">
-        <h3>Full Stack Web Development</h3>
-        <div class="org">AK Mechanics Application</div>
-        <p>Built an ASP.NET Core MVC application for vehicle service and maintenance management, using Entity Framework Core, SQL Server, a responsive interface and Azure deployment.</p>
-      </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-date">Present</div>
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">
-        <h3>AI Autonomous Vehicle Project</h3>
-        <div class="org">University of Zululand Final Year Capstone</div>
-        <p>Developed and track-tested a Raspberry Pi 4B autonomous RC-car prototype using an OV5647 camera, a behavioural-cloning CNN for steering prediction, PCA9685 PWM steering control, a steering servo and a BTS7960 motor driver. The training set contains 1,620 labelled image–steering pairs; the best validation MSE was 0.174 (epoch 11), with steering-angle MAE of 16.66° and RMSE of 25.03°. A Kotlin/Jetpack Compose Android app supports live video, manual driving and autonomous-mode initialisation through a Flask backend. Ultrasonic obstacle detection is under development, while integrated perception-to-control behaviour continues to be tuned during track testing.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CV BANNER -->
-<div class="cv-banner">
-  <div class="cv-banner-text">
-    <h3>Want the full picture?</h3>
-    <p>Download my CV for a complete overview of my education, projects, and skills.</p>
-  </div>
-  <a href="cv.pdf" download class="btn btn-cv" style="white-space:nowrap; padding: 14px 28px; font-size: 13px;">↓ Download CV</a>
-</div>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="section-label">Get in touch</div>
-  <div class="contact-grid">
-    <div class="contact-info">
-      <h3>Let's build something <span>together</span></h3>
-      <p>Open to international opportunities, research collaborations, engineering exchange programmes, and interesting projects. Based in South Africa.</p>
-      <div class="contact-links">
-        <div class="contact-link"><span class="lbl">Email</span><span><a href="mailto:andisakhumalo.94@gmail.com" style="color: var(--text);">andisakhumalo.94@gmail.com</a></span></div>
-        <div class="contact-link"><span class="lbl">LinkedIn</span><span><a href="https://www.linkedin.com/in/andisa-khumalo-186761235" target="_blank" rel="noopener noreferrer" style="color: var(--text);">Andisa Khumalo</a></span></div>
-        <div class="contact-link"><span class="lbl">GitHub</span><span><a href="https://github.com/AndisaKhumalo?tab=repositories" target="_blank" rel="noopener noreferrer" style="color: var(--text);">AndisaKhumalo</a></span></div>
-        <div class="contact-link" style="margin-top:1rem; border:none; padding-top:1rem;">
-          <a href="cv.pdf" download class="btn btn-cv" style="padding: 12px 20px; font-size: 12px;">↓ Download CV</a>
-        </div>
-      </div>
-    </div>
-    <div>
-      <form action="https://formspree.io/f/mkoyqzjg" method="POST" novalidate>
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" placeholder="Your name" required>
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="your@email.com" required>
-        </div>
-        <div class="form-group">
+        <div class="field">
           <label for="message">Message</label>
-          <textarea id="message" name="message" placeholder="Tell me about your project or opportunity..."></textarea>
+          <textarea id="message" name="message" placeholder="Tell me about the role, project or opportunity…" required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Send message →</button>
+        <button type="submit" class="btn btn-primary">Send message
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg>
+        </button>
       </form>
     </div>
   </div>
 </section>
 
 <footer>
-  <span>© 2026 Andisa Khumalo</span>
-  <span>ECE Student — South Africa</span>
+  <div class="wrap foot">
+    <span>© 2026 Andisa Khumalo</span>
+    <span>Electrical &amp; Computer Engineering · South Africa</span>
+  </div>
 </footer>
 
 <script>
-  // Mobile menu toggle
-  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+  // ---- Mobile menu ----
+  const menuBtn = document.getElementById('menu-btn');
   const navLinks = document.getElementById('nav-links');
-  
-  if (mobileMenuToggle) {
-    mobileMenuToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-    });
-    
-    // Close menu when a link is clicked
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-      });
-    });
-  }
-
-  // Dark/Light mode toggle
-  const themeToggle = document.getElementById('theme-toggle');
-  const htmlElement = document.documentElement;
-  
-  // Check for saved theme preference or default to dark
-  const currentTheme = localStorage.getItem('theme') || 'dark';
-  htmlElement.setAttribute('data-theme', currentTheme);
-  updateThemeButton(currentTheme);
-  
-  themeToggle.addEventListener('click', () => {
-    const theme = htmlElement.getAttribute('data-theme');
-    const newTheme = theme === 'dark' ? 'light' : 'dark';
-    
-    htmlElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-    updateThemeButton(newTheme);
+  menuBtn.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open);
   });
-  
-  function updateThemeButton(theme) {
-    themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }));
+
+  // ---- Theme toggle ----
+  const root = document.documentElement;
+  const themeBtn = document.getElementById('theme-toggle');
+  const sun = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
+  const moon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
+  let saved = null;
+  try { saved = localStorage.getItem('theme'); } catch (e) {}
+  const initial = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+  setTheme(initial);
+  themeBtn.addEventListener('click', () => {
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    setTheme(next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+  });
+  function setTheme(t) {
+    root.setAttribute('data-theme', t);
+    themeBtn.innerHTML = t === 'dark' ? sun : moon;
   }
 
-  // Animate skill bars on scroll
-  const observerOptions = {
-    threshold: 0.5,
-    rootMargin: '0px'
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const skillFills = entry.target.querySelectorAll('.skill-fill');
-        skillFills.forEach(fill => {
-          fill.style.animation = 'none';
-          setTimeout(() => {
-            fill.style.animation = 'fillSkill 1.2s ease-out forwards';
-          }, 10);
-        });
-        observer.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
-
-  const skillsList = document.querySelector('.skills-list');
-  if (skillsList) {
-    observer.observe(skillsList);
-  }
+  // ---- Reveal on scroll ----
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
-
 </body>
 </html>
